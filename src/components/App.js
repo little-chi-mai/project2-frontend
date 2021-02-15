@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
+import TestingChats from './TestingChats'
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class App extends Component {
             <Route exact path='/signup' component={Signup} />
           </Switch>
         </BrowserRouter>
+        <TestingChats />
       </div>
     );
   }
