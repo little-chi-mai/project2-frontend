@@ -2,13 +2,15 @@ import React from 'react';
 import{ Link } from 'react-router-dom'
 import RestaurantSearch from './RestaurantSearch'
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
-      <Link to='/login'>Log In</Link>
-      <br/>
-      <Link to='/signup'>Sign Up</Link>
-      <br/>
+      <nav>
+        {!props.isLoggedIn && <Link to='/login'>Log In</Link>}
+        {!props.isLoggedIn && <Link to='/signup'>Sign Up</Link>}
+        {props.isLoggedIn && <Link to='/logout'>Log Out</Link> }
+      </nav>
+      <h1> I feel like</h1>
       <RestaurantSearch/>
     </div>
   );
