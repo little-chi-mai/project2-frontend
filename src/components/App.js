@@ -5,6 +5,7 @@ import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
 import ShowRestaurant from './ShowRestaurant'
+import EventShow from './EventShow'
 
 class App extends Component {
   constructor(props) {
