@@ -8,7 +8,6 @@ class Login extends Component {
     super(props);
       this.state = {
         name: '',
-        email: '',
         password: '',
         errors: ''
       };
@@ -23,10 +22,9 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { name, email, password } = this.state
+    const { name, password } = this.state
     let user = {
       name: name,
-      email: email,
       password: password
     }
 
@@ -70,13 +68,6 @@ render() {
             type='text'
             name='name'
             value={ name }
-            onChange={ this.handleChange }
-          />
-          <input
-            placeholder='email'
-            type='text'
-            name='email'
-            value={ email }
             onChange={ this.handleChange }
           />
           <input
