@@ -61,6 +61,7 @@ class Signup extends Component {
   };
 
   render() {
+    console.log('Signup.js Results', this.props);
     const { name, email, password, password_confirmation } = this.state
     return (
       <div>

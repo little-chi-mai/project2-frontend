@@ -4,7 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
-import TestingChats from './TestingChats'
+import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
 import ShowRestaurant from './ShowRestaurant'
 import EventCreate from './EventCreate'
@@ -53,9 +53,9 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/' component={(props) => <Home {...props} isLoggedIn={this.state.isLoggedIn}/> } />
+            <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+            <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
             <Route path='/event/:id'>
               <EventShow />
@@ -66,7 +66,6 @@ class App extends Component {
 
           </Switch>
         </BrowserRouter>
-        <TestingChats />
       </div>
     );
   }
