@@ -6,6 +6,10 @@ import Login from './Login'
 import Signup from './Signup'
 import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
+<<<<<<< HEAD
+=======
+import EventCreate from './EventCreate'
+>>>>>>> dedc46ec24ef6dd6cacc9a28764c154282538f6b
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +64,7 @@ class App extends Component {
             </Route>
 
             <Route exact path='/restaurant/:id' component={ShowRestaurant} />
+            <Route exact path='/restaurant/:id/create-event' component={EventCreate} />
 
           </Switch>
         </BrowserRouter>
