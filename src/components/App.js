@@ -5,6 +5,7 @@ import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
 import TestingChats from './TestingChats'
+import EventShow from './EventShow'
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +54,11 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
+
+            <Route path='/event/:id'>
+              <EventShow />
+            </Route>
+
           </Switch>
         </BrowserRouter>
         <TestingChats />
