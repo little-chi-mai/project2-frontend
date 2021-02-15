@@ -6,7 +6,6 @@ import Login from './Login'
 import Signup from './Signup'
 import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
-import ShowRestaurant from './ShowRestaurant'
 import EventCreate from './EventCreate'
 
 class App extends Component {
