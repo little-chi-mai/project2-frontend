@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import axios from 'axios';
+import CreateEvent from './CreateEvent';
 
 const GetRestaurant_URL = (id) => {
   return `http://localhost:3000/restaurants/${id}`
@@ -47,7 +48,7 @@ class ShowRestaurant extends Component {
         <p>Price level: {this.state.restaurant.price_level}/5</p>
         <p>Restaurant's photo coming soon</p>
 
-        <button>Create event!</button>
+        <CreateEvent />
       </div>
     )
   }
