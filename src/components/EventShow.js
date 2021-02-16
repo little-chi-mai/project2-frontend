@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
 import EventDelete from './EventDelete'
+
 
 const SERVER_URL = 'http://localhost:3000/events.json'
 
@@ -43,6 +44,10 @@ class EventShowPage extends Component {
     fetchEvent()
   }
 
+  _handleEdit(){
+    
+  }
+
   render(){
     return(
       <div>
@@ -50,6 +55,7 @@ class EventShowPage extends Component {
         <h3>Date: {this.state.date} </h3>
         <h3>Venue: {this.state.restaurant}</h3>
         <p>Summary: {this.state.introduction}</p>
+        <button onClick = this._handleEdit> Edit this event</button>
         <EventDelete />
       </div>
     )

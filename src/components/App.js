@@ -8,6 +8,7 @@ import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
 import EventCreate from './EventCreate'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +63,7 @@ class App extends Component {
 
             <Route exact path='/restaurant/:id' component={ShowRestaurant} />
             <Route exact path='/restaurant/:id/create-event' component={EventCreate} />
+            
 
           </Switch>
         </BrowserRouter>
