@@ -36,15 +36,15 @@ class App extends Component {
   handleLogin = (data) => {
     this.setState({
       isLoggedIn: true,
-      user: data.user
-    })
+      user: data.data.user
+    });
   }
 
   handleLogout = () => {
     this.setState({
       isLoggedIn: false,
       user: {}
-    })
+    });
   }
 
   render() {
@@ -52,7 +52,17 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={(props) => <Home {...props} isLoggedIn={this.state.isLoggedIn}/> } />
+            <Route
+              exact
+              path='/'
+              component={(props) =>
+                <Home
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleLogout={this.state.handleLogout}
+                />
+              }
+            />
             <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
             <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
