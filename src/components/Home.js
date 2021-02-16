@@ -11,7 +11,7 @@ const Home = (props) => {
         {props.isLoggedIn && <Link to='/logout'>Log Out</Link> }
       </nav>
       <h1> I feel like</h1>
-      <RestaurantSearch/>
+      <RestaurantSearch {...props}/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import axios from 'axios';
-import CreateEvent from './CreateEvent';
+import ButtonCreateEvent from './ButtonCreateEvent';
 
 const GetRestaurant_URL = (id) => {
   return `http://localhost:3000/restaurants/${id}`
@@ -26,10 +26,9 @@ class ShowRestaurant extends Component {
     console.log(restaurant_URL);
 
     const fetchRestaurant = () => {
+      console.log("fetchRestaurant()");
       axios.get(restaurant_URL).then((response) => {
-        // console.log(response);
         this.setState({restaurant: response.data.restaurants});
-        // console.log(this.state);
       })
     }
 
@@ -48,7 +47,7 @@ class ShowRestaurant extends Component {
         <p>Price level: {this.state.restaurant.price_level}/5</p>
         <p>Restaurant's photo coming soon</p>
 
-        <CreateEvent />
+        <ButtonCreateEvent restaurant={this.state.restaurant}/>
       </div>
     )
   }
