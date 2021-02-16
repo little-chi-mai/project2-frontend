@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants'
+const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants.json'
 
-function AddToWishList(restaurant, callback) {
+function AddToWishList(restaurant, user_id, callback) {
   console.log("AddToWishList()");
   console.log(restaurant);
   const newRestaurant = {
@@ -16,6 +16,7 @@ function AddToWishList(restaurant, callback) {
     rating: restaurant.rating,
     website: restaurant.website,
     // contact: restaurant.contact
+    user_id: user_id
   }
   console.log(newRestaurant);
   axios.post(ALL_RESTAURANTS_URL, newRestaurant).then((response) => {
@@ -26,8 +27,9 @@ function AddToWishList(restaurant, callback) {
 }
 
 function ButtonAddToWishList(props) {
+  console.log(props.user);
   return(
-    <button onClick={() => AddToWishList(props.restaurant, () => {})}>
+    <button onClick={() => AddToWishList(props.restaurant, props.user.id, () => {})}>
       Add to your Wishlist
     </button>
   )

@@ -4,9 +4,11 @@ import {AddToWishList} from './ButtonAddToWishList'
 
 
 function ButtonCreateEvent(props) {
+
+
   return(
     <button onClick={() => {
-      AddToWishList(props.restaurant, (restaurant_id) => {
+      AddToWishList(props.restaurant, props.user.id, (restaurant_id) => {
         console.log(restaurant_id);
         props.history.push(`/restaurant/${restaurant_id}/create-event`)
       });

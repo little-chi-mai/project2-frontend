@@ -16,7 +16,7 @@ class ShowResult extends Component {
         {this.props.restaurant.name &&
           <div>
             <h3>{this.props.restaurant.name}</h3>
-            <ButtonAddToWishList restaurant={this.props.restaurant}/>
+            <ButtonAddToWishList {...this.props} restaurant={this.props.restaurant}/>
             <ButtonCreateEvent {...this.props} restaurant={this.props.restaurant}/>
           </div>
         }

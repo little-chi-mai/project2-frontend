@@ -29,10 +29,9 @@ class RestaurantSearch extends Component {
   }
 
   render() {
-    console.log('RestaurantSearch', this.props);
     return(
       <div>
-        <SearchForm onSubmit={this.fetchRestaurant}/>
+        <SearchForm {...this.props} onSubmit={this.fetchRestaurant}/>
         <ShowResult {...this.props} restaurant={this.state.restaurant}/>
       </div>
     )
