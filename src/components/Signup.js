@@ -10,7 +10,7 @@ class Signup extends Component {
       email: '',
       password: '',
       password_confirmation: '',
-      errors: ''
+      errors: []
     };
   }
 
@@ -36,6 +36,7 @@ class Signup extends Component {
         this.props.handleLogin(response.data)
         this.redirect()
       } else {
+        console.log(response.data.errors);
         this.setState({
           errors: response.data.errors
         })
@@ -61,11 +62,11 @@ class Signup extends Component {
   };
 
   render() {
-    console.log('Signup.js Results', this.props);
     const { name, email, password, password_confirmation } = this.state
     return (
       <div>
         <h1>Sign Up</h1>
+        {this.handleErrors()}
         <form onSubmit={ this.handleSubmit }>
           <input
             placeholder='name'
@@ -76,7 +77,7 @@ class Signup extends Component {
           />
           <input
             placeholder='email'
-            type='text'
+            type='email'
             name='email'
             value={ email }
             onChange={ this.handleChange }
@@ -102,6 +103,7 @@ class Signup extends Component {
 
         </form>
       </div>
+
     );
   }
 }
