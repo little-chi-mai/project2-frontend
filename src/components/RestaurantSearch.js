@@ -6,10 +6,10 @@ import axios from 'axios';
 // const SEARCH_RAILS_URL = 'http://localhost:3000/search/'
 
 class RestaurantSearch extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      restaurantObj: {}
+      restaurant: {}
     }
     this.fetchRestaurant = this.fetchRestaurant.bind(this)
   }
@@ -24,17 +24,15 @@ class RestaurantSearch extends Component {
       ].join('');
     }
     axios.get(generateURL(term)).then((response) => {
-      console.log(response.data.candidates[0]);
-      console.log(generateURL(term));
-      this.setState({restaurantObj: response.data.candidates[0]})
+      this.setState({restaurant: response.data.candidates[0]})
     })
   }
 
   render() {
     return(
       <div>
-        <SearchForm onSubmit={this.fetchRestaurant}/>
-        <ShowResult restaurantObj={this.state.restaurantObj}/>
+        <SearchForm {...this.props} onSubmit={this.fetchRestaurant}/>
+        <ShowResult {...this.props} restaurant={this.state.restaurant}/>
       </div>
     )
   }

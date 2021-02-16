@@ -17,7 +17,6 @@ class SearchForm extends Component {
 
   _handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
     this.props.onSubmit(this.state.query);
   }
 
@@ -25,10 +24,8 @@ class SearchForm extends Component {
     return(
         <form onSubmit={this._handleSubmit}>
           <input onInput={this._handleInput}/>
-          <button>Search {this.state.query}</button>
+          <button>Hmm...{this.state.query}?</button>
         </form>
-
-
     )
   }
 }

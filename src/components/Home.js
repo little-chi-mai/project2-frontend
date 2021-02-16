@@ -1,20 +1,13 @@
-import React from 'react';
-import{ Link } from 'react-router-dom'
+import React from 'react'
 import RestaurantSearch from './RestaurantSearch'
 
-const Home = (props) => {
-  return (
+function Home(props) {
+  return(
     <div>
-      <nav>
-        {!props.isLoggedIn && <Link to='/login'>Log In</Link>}
-        {!props.isLoggedIn && <Link to='/signup'>Sign Up</Link>}
-        <button onClick={props.handleLogout}>
-              {props.isLoggedIn ? 'Logout' : 'Login'}
-            </button>
-      </nav>
       <h1> I feel like</h1>
-      <RestaurantSearch/>
+      <RestaurantSearch {...props}/>
     </div>
-  );
-};
-export default Home;
+  )
+}
+
+export default Home
