@@ -6,12 +6,22 @@ import ChatsDisplay from './ChatsDisplay'
 const SERVER_URL = 'http://localhost:3000/chats.json'
 
 class TestingChats extends Component {
-  constructor(){
-    super();
-    this.state = {chats:[]}
+  constructor(props){
+    super(props);
+    this.state = {
+      id: this.props.event_id,
+      chats:[]
+    }
+    this.setState = this.setState.bind(this);
+
     const fetchChats = () => {
       axios.get(SERVER_URL).then((response) => {
-        this.setState({chats: response.data})
+        const chat = response.data.filter(chatInfo => chatInfo.event_id === this.state.id
+        );
+        console.log('Chat response', chat);
+        this.setState({
+          chats: chat
+        })
       })
     }
     fetchChats()
@@ -21,7 +31,7 @@ class TestingChats extends Component {
     return(
       <div>
         <h2>Testing</h2>
-        <ChatsDisplay chats = {this.state.chats}/>
+        <ChatsDisplay chats={this.state.chats}/>
       </div>
     )
   }
