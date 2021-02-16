@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './Home'
+import NavBar from './NavBar'
 import Login from './Login'
 import Signup from './Signup'
 import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
 import EventCreate from './EventCreate'
+import Home from './Home'
 
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
   handleLogin = (data) => {
     this.setState({
       isLoggedIn: true,
-      user: data.user
+      user: data.data.user
     })
   }
 
@@ -52,8 +53,10 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
+          <NavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
+
           <Switch>
-            <Route exact path='/' component={(props) => <Home {...props} isLoggedIn={this.state.isLoggedIn}/> } />
+            <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
             <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
             <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
