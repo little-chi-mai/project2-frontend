@@ -3,6 +3,7 @@ import {useParams, Link} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
 import EventDelete from './EventDelete'
+import TestingChats from './TestingChats'
 
 
 const SERVER_URL = 'http://localhost:3000/events.json'
@@ -25,13 +26,14 @@ class EventShowPage extends Component {
       creator:'',
       restaurant: ''
     }
+    this.setState =this.setState.bind(this);
 
     const fetchEvent = () => {
       axios.get(SERVER_URL).then((response) => {
         const event = response.data.find(eventInfo =>
           eventInfo.id === this.state.id
         );
-        console.log(event);
+        console.log('Event Show', event);
         this.setState({
           title:event.title,
           introduction: event.introduction,
@@ -57,6 +59,7 @@ class EventShowPage extends Component {
         <p>Summary: {this.state.introduction}</p>
         <button onClick = this._handleEdit> Edit this event</button>
         <EventDelete />
+        <TestingChats event_id={this.state.id}/>
       </div>
     )
   }

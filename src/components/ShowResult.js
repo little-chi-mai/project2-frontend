@@ -1,24 +1,33 @@
 import React, {Component} from 'react';
+import ButtonAddToWishList from './ButtonAddToWishList'
+import ButtonCreateEvent from './ButtonCreateEvent'
 
 class ShowResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantObj: props.restaurantObj
+      restaurant: props.restaurant
     }
   }
 
   render() {
     return(
       <div>
-        <h3>{this.props.restaurantObj.name}</h3>
-        <p>{this.props.restaurantObj.formatted_address}</p>
-        {this.props.restaurantObj.rating &&
-          <p>Rating: {this.props.restaurantObj.rating}</p>
+        {this.props.restaurant.name &&
+          <div>
+            <h3>{this.props.restaurant.name}</h3>
+            <ButtonAddToWishList restaurant={this.props.restaurant}/>
+            <ButtonCreateEvent {...this.props} restaurant={this.props.restaurant}/>
+          </div>
         }
-        {this.props.restaurantObj.user_ratings_total &&
-          <p>Total user rating: {this.props.restaurantObj.user_ratings_total}</p>
+        <p>{this.props.restaurant.formatted_address}</p>
+        {this.props.restaurant.rating &&
+          <p>Rating: {this.props.restaurant.rating}</p>
         }
+        {this.props.restaurant.user_ratings_total &&
+          <p>Total user rating: {this.props.restaurant.user_ratings_total}</p>
+        }
+
       </div>
     )
   }

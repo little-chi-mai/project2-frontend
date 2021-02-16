@@ -62,6 +62,7 @@ render() {
   return (
     <div>
       <h1>Log In</h1>
+      <p>{this.state.errors}</p>
         <form onSubmit={ this.handleSubmit }>
           <input
             placeholder='name'
