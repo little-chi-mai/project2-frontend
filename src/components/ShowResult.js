@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ButtonAddToWishList from './ButtonAddToWishList'
-import ButtonCreateEvent from './ButtonCreateEvent'
+import ButtonAddAndCreate from './ButtonAddAndCreate'
 
 class ShowResult extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class ShowResult extends Component {
           <div>
             <h3>{this.props.restaurant.name}</h3>
             <ButtonAddToWishList {...this.props} restaurant={this.props.restaurant}/>
-            <ButtonCreateEvent {...this.props} restaurant={this.props.restaurant}/>
+            <ButtonAddAndCreate {...this.props} restaurant={this.props.restaurant}/>
           </div>
         }
         <p>{this.props.restaurant.formatted_address}</p>

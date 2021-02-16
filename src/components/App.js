@@ -8,6 +8,8 @@ import ShowRestaurant from './ShowRestaurant'
 import EventShow from './EventShow'
 import EventCreate from './EventCreate'
 import Home from './Home'
+import Wishlist from './Wishlist'
+import EventList from './EventList'
 
 
 class App extends Component {
@@ -65,8 +67,10 @@ class App extends Component {
             </Route>
 
             <Route exact path='/restaurant/:id' component={ShowRestaurant} />
+            <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
+            <Route exact path='/events' component={() => <EventList {...this.state} />} />
             <Route exact path='/restaurant/:id/create-event' component={EventCreate} />
-            
+
 
           </Switch>
         </BrowserRouter>
