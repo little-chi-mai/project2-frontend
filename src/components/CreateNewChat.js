@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from './Constants'
 
-const SERVER_URL = 'http://localhost:3000/chats';
+
+const SERVER_URL = config.url.API_URL + 'chats'
 
 class CreateNewChat extends Component {
   constructor(props) {

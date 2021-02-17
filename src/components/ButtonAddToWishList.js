@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import { config } from './Constants'
 
-const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants.json'
+
+const ALL_RESTAURANTS_URL = config.url.API_URL + 'restaurants.json'
 
 function AddToWishList(restaurant, user_id, callback) {
   console.log("AddToWishList()");

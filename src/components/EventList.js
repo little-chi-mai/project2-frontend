@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { config } from './Constants'
 
-const ALL_EVENTS_URL = 'http://localhost:3000/events.json'
+
+const ALL_EVENTS_URL = config.url.API_URL + 'events.json'
 
 class EventList extends Component {
   constructor(props) {
@@ -11,8 +13,9 @@ class EventList extends Component {
     }
     axios.get(ALL_EVENTS_URL).then((response) => {
       console.log(response);
+
       const events = response.data.filter((event) =>
-        event.user.id === props.user.id
+        event.user && event.user.id === props.user.id
       );
       console.log(events);
       this.setState({eventList: events})

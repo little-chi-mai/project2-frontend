@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-
 import ChatsDisplay from './ChatsDisplay'
+import { config } from './Constants'
 
-const SERVER_URL = 'http://localhost:3000/chats.json'
+
+const SERVER_URL = config.url.API_URL + 'chats.json'
 
 class TestingChats extends Component {
   constructor(props){

@@ -4,10 +4,11 @@ import { withRouter } from "react-router";
 import axios from 'axios';
 import TestingChats from './TestingChats';
 import CreateNewChat from './CreateNewChat';
+import { config } from './Constants'
 
 
 const GET_EVENT_URL = (id) =>{
-  return `http://localhost:3000/events/${id}.json`
+  return config.url.API_URL + `events/${id}.json`
 }
 
 const EventShow = (props) => {
