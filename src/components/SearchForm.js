@@ -5,19 +5,29 @@ class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      query: ''
+      query: '',
+      isQueryChanged: false
     }
     this._handleInput = this._handleInput.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   _handleInput(event) {
-    this.setState({query: event.target.value});
+    this.setState({
+      query: event.target.value,
+      isQueryChanged: true
+    });
   }
 
   _handleSubmit(event) {
     event.preventDefault();
-    this.props.onSubmit(this.state.query);
+    console.log('_handleSubmit');
+    this.setState({isQueryChanged: false});
+    if (this.state.isQueryChanged === true) {
+      this.props.onSubmit(this.state.query);
+    } else {
+      this.props.fetchRandomNum();
+    }
   }
 
   render() {
