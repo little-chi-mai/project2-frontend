@@ -11,8 +11,9 @@ class EventList extends Component {
     }
     axios.get(ALL_EVENTS_URL).then((response) => {
       console.log(response);
+
       const events = response.data.filter((event) =>
-        event.user.id === props.user.id
+        event.user && event.user.id === props.user.id
       );
       console.log(events);
       this.setState({eventList: events})

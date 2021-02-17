@@ -4,19 +4,26 @@ import ButtonCreateEvent from './ButtonCreateEvent'
 
 const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants.json'
 
+const GetRestaurantURL = (id) => {
+  return `http://localhost:3000/restaurants/${id}.json`
+}
+
 class ShowRestaurantList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       restaurantList: []
     }
+    this.updateList = this.updateList.bind(this)
+    this.updateList();
+  }
+
+  updateList() {
     axios.get(ALL_RESTAURANTS_URL).then((response) => {
       const restaurants = response.data.filter((restaurant) =>
-        restaurant.user.id === props.user.id
+        restaurant.user && restaurant.user.id === this.props.user.id
       );
-      console.log(restaurants);
-      this.setState({restaurantList: restaurants})
-      console.log(this.state.restaurantList)
+      this.setState({restaurantList: restaurants});
     })
   }
 
@@ -28,6 +35,7 @@ class ShowRestaurantList extends Component {
           <div>
             <h3>{restaurant.name}</h3>
             <ButtonCreateEvent restaurant={restaurant}/>
+            <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
             <p>Address: {restaurant.address}</p>
             <p>Website: <a href={restaurant.website}>{restaurant.website}</a></p>
             <p>Contact: {restaurant.contact}</p>
@@ -39,6 +47,24 @@ class ShowRestaurantList extends Component {
       </div>
     )
   }
+}
+
+function ButtonRemove(props) {
+
+  function _handleDelete(callback) {
+    const RESTAURANT_ID = GetRestaurantURL(props.restaurant.id)
+    axios.delete(RESTAURANT_ID, {id: props.restaurant.id}).then((response) => {
+      callback(response)
+    })
+  }
+
+  return(
+    <button onClick={() => {
+      _handleDelete(() => {
+        props.updateList()
+      });
+    }}>Remove from list</button>
+  )
 }
 
 export default ShowRestaurantList
