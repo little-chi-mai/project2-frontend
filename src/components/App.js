@@ -63,7 +63,7 @@ class App extends Component {
             <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
             <Route path='/event/:id'>
-              <EventShow />
+              <EventShow {...this.state} />
             </Route>
 
             <Route exact path='/restaurant/:id' component={ShowRestaurant} />

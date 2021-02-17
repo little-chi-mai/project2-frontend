@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import {useParams, Link} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
-import TestingChats from './TestingChats'
+import TestingChats from './TestingChats';
+import CreateNewChat from './CreateNewChat';
 
 
 const GET_EVENT_URL = (id) =>{
   return `http://localhost:3000/events/${id}.json`
 }
 
-const EventShow = () => {
+const EventShow = (props) => {
   const {id} = useParams();
   return(
-    <EventShowPage event_id = {parseInt(id)}/>
+    <EventShowPage {...props} event_id = {parseInt(id)}/>
   )
 }
 
@@ -96,6 +97,7 @@ class EventShowPage extends Component {
         <button onClick = {this._handleToggle}> Edit this event</button>
         <button onClick = {this._handleDelete}> Delete this event</button>
         <TestingChats event_id={this.state.id}/>
+        <CreateNewChat {...this.props} event_id={this.state.id}/>
       </div>
     )
   }
