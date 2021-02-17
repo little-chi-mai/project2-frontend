@@ -12,17 +12,16 @@ class TestingChats extends Component {
       id: this.props.event_id,
       chats:[]
     }
-    this.setState = this.setState.bind(this);
 
     const fetchChats = () => {
       axios.get(SERVER_URL).then((response) => {
         const chat = response.data.filter(chatInfo => chatInfo.event_id === this.state.id
         );
-        console.log('Chat response', chat);
         this.setState({
           chats: chat
-        })
-      })
+        });
+        setTimeout(fetchChats, 4000);
+      });
     }
     fetchChats()
   }
