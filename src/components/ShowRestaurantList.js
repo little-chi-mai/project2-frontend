@@ -4,10 +4,10 @@ import ButtonCreateEvent from './ButtonCreateEvent'
 import { config } from './Constants'
 
 
-const ALL_RESTAURANTS_URL = config.url.API_URL + '/restaurants.json'
+const ALL_RESTAURANTS_URL = config.url.API_URL + 'restaurants.json'
 
 const GetRestaurantURL = (id) => {
-  return `http://localhost:3000/restaurants/${id}.json`
+  return config.url.API_URL + `restaurants/${id}.json`
 }
 
 class ShowRestaurantList extends Component {
