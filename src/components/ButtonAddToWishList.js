@@ -29,13 +29,12 @@ class ButtonAddToWishList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSaved: false
+      isSaved: false,
     }
 
     this.getAllRestaurants = this.getAllRestaurants.bind(this)
     this.isRestaurantSaved = this.isRestaurantSaved.bind(this)
 
-    this.isRestaurantSaved();
   }
 
   getAllRestaurants(callback) {
@@ -47,33 +46,51 @@ class ButtonAddToWishList extends Component {
     })
   }
 
-
   isRestaurantSaved() {
     this.getAllRestaurants((restaurants) => {
       if (restaurants !== []) {
         const restaurantFound = restaurants.find(restaurant => restaurant.place_id === this.props.restaurant.place_id)
         if (restaurantFound) {
           this.setState({isSaved: true});
-          console.log('Saved Already');
         } else {
           this.setState({isSaved: false});
-          console.log('Havent saved');
         }
       }
     });
   }
 
+  componentDidMount() {
+    // console.log('My component was rendered to the screen')
+    this.isRestaurantSaved();
+  }
 
-  render() {
+  componentDidUpdate(prevProps) {
+    // console.log('My component was just updated')
     // this.isRestaurantSaved();
-    console.log('RENDERED');
+    if (this.props.restaurant !== prevProps.restaurant) {
+      // console.log('SETSTATE');
+      this.isRestaurantSaved();
+    }
+  }
+
+  renderContent() {
     return (
       <div>
       {
         this.state.isSaved
         ? <button>SAVED!</button>
-        : <button onClick={() => AddToWishList(this.props.restaurant, this.props.user.id, () => {console.log("Added to wishlist");this.isRestaurantSaved()})}>Add to your Wishlist</button>
+        : <button onClick={() => AddToWishList(this.props.restaurant, this.props.user.id, () => {this.setState({isSaved: true})})}>Add to your Wishlist</button>
       }
+      </div>
+    )
+  }
+
+
+  render() {
+    // console.log('RENDERED');
+    return(
+      <div>
+        {this.renderContent()}
       </div>
     )
   }

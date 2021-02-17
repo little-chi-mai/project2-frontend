@@ -34,6 +34,16 @@ class SearchForm extends Component {
     this.setState({query: ''})
   }
 
+  componentDidUpdate(prevProps) {
+    console.log('My component was just updated')
+    // this.isRestaurantSaved();
+    console.log(this.props.random);
+    if (this.props.random && this.props.random !== prevProps.random) {
+      console.log('SETSTATE');
+      this.setState({query: ''})
+    }
+  }
+
   render() {
     return(
         <form onSubmit={this._handleSubmit}>

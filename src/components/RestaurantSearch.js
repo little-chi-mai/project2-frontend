@@ -15,11 +15,12 @@ class RestaurantSearch extends Component {
       restaurants: [],
       randomNum: 0,
       searchButtonClicked: false,
-      isIncluded: false
+      random : true
     }
     this.fetchRestaurants = this.fetchRestaurants.bind(this)
     this.fetchRandomNum = this.fetchRandomNum.bind(this)
     this.fetchRandomRestaurant = this.fetchRandomRestaurant.bind(this)
+    this._handleSubmit = this._handleSubmit.bind(this)
   }
 
 
@@ -35,7 +36,8 @@ class RestaurantSearch extends Component {
       this.setState({
         restaurants: response.data.results,
         searchButtonClicked: true,
-        isIncluded: true
+        isIncluded: true,
+        random: false,
       })
       this.fetchRandomNum();
     })
@@ -53,10 +55,12 @@ class RestaurantSearch extends Component {
       this.setState({
         restaurants: response.data.candidates,
         searchButtonClicked: true,
-        isIncluded: true
+        isIncluded: true,
+        random: true
       })
       this.fetchRandomNum();
     });
+
   }
 
   fetchRandomNum() {
@@ -68,10 +72,9 @@ class RestaurantSearch extends Component {
   _handleSubmit() {
     const adventurousTerms = ['cake', 'steak', 'cookies', 'ice cream', 'thai food', 'good pizza', 'vietnamese', 'korean', 'bbq'];
     const randomTerm = adventurousTerms[Math.floor(Math.random() * adventurousTerms.length)];
-    console.log(randomTerm)
+    console.log(randomTerm);
     this.fetchRandomRestaurant(randomTerm);
   }
-
 
   render() {
     return(
@@ -80,7 +83,7 @@ class RestaurantSearch extends Component {
           Adventurous!
         </button>
         <h3>or</h3>
-        <SearchForm {...this.props} onSubmit={this.fetchRestaurants} fetchRandomNum={this.fetchRandomNum}/>
+        <SearchForm {...this.props} {...this.state} onSubmit={this.fetchRestaurants} fetchRandomNum={this.fetchRandomNum}/>
         <ShowResult {...this.props} {...this.state} restaurant={this.state.restaurants[this.state.randomNum]}/>
       </div>
     )
