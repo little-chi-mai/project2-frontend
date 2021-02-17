@@ -62,14 +62,12 @@ class App extends Component {
             <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
             <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
-            <Route path='/event/:id'>
-              <EventShow />
-            </Route>
+            <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
             <Route exact path='/restaurant/:id' component={ShowRestaurant} />
             <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
             <Route exact path='/events' component={() => <EventList {...this.state} />} />
-            <Route exact path='/restaurant/:id/create-event' component={EventCreate} />
+            <Route exact path='/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
 
 
           </Switch>

@@ -26,7 +26,8 @@ class EventShowPage extends Component {
       introduction:'',
       date:'',
       creator:{},
-      restaurant: {}
+      restaurant: {},
+      attendants: []
     }
     this._handleToggle =this._handleToggle.bind(this);
     this._handleEdit =this._handleEdit.bind(this);
@@ -39,12 +40,14 @@ class EventShowPage extends Component {
     const fetchEvent = () => {
       axios.get(EVENT_URL).then((response) => {
         // console.log(response.data)
-        const event = response.data
+        const event = response.data.event
         this.setState({
           title:event.title,
           introduction: event.introduction,
           date: event.date,
-          restaurant: event.restaurant
+          creator: event.user,
+          restaurant: event.restaurant,
+          attendants: event.attendants
         })
       })
     }
@@ -90,14 +93,22 @@ class EventShowPage extends Component {
     return(
       <div>
         <h2>Event: {this.state.title}</h2>
-        <h3>Date: {this.state.date} </h3>
+        <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>
         <h3>Venue: {this.state.restaurant.name}</h3>
+        <h4>Attendants:{this.state.attendants.map((object) => {return object.user.name}).join(', ')}</h4>
         <p>Summary: {this.state.introduction}</p>
         <button onClick = {this._handleToggle}> Edit this event</button>
         <button onClick = {this._handleDelete}> Delete this event</button>
         <TestingChats event_id={this.state.id}/>
       </div>
     )
+  }
+
+  findAttendants(keyword, users){
+    return users.filter(user => {
+      const regex = new RegExp(keyword, 'gi');
+      return user.name.match(regex)
+    });
   }
 
   renderForm(){
