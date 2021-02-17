@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
-import { config } from './Constants'
 
-
-const SERVER_URL = config.url.API_URL + 'events'
+const SERVER_URL = 'http://localhost:3000/events'
 
 const EventCreate = (props) => {
   const {id} = useParams();
@@ -42,7 +40,7 @@ class EventCreateForm extends Component {
 
   _handleSubmit = (event) => {
     event.preventDefault();
-    const {title, date, introduction, user, restaurant_id} = this.state;
+    const {title, date, introduction, user, restaurant_id, attendants, _} = this.state;
     let newEvent = {
       title:title,
       date:date,
@@ -52,6 +50,12 @@ class EventCreateForm extends Component {
     };
     console.log(newEvent)
     axios.post(SERVER_URL, newEvent).then((response) => {
+      console.log(response.data)
+    })
+
+    axios.get(SERVER_URL + '.json').then((response) => {
+      const event = response.data.filter(eventInfo => eventInfo.title === newEvent.title && eventInfo.user === newEvent.user && eventInfo.date === newEvent.date)
+      
       console.log(response.data)
     })
   }
@@ -82,12 +86,12 @@ class EventCreateForm extends Component {
     let user_id = Number(event.target.id)
     if(event.target.checked === true) {
       let add = searched.find((user) => {return user.id === user_id})
-      checked = checked.concat(add)
+      checked = checked.concat( {user:add})
       this.setState({
         attendants:checked
       })
     } else {
-      let remove = checked.findIndex((user) => {return user.id === user_id})
+      let remove = checked.findIndex((user) => {return user.user.id === user_id})
       if(remove !== -1) {
         checked.splice(remove,1)
         this.setState({
