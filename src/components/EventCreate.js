@@ -57,6 +57,7 @@ class EventCreateForm extends Component {
   _findAttendants = (event) => {
     event.preventDefault();
     if(event.target.value === '') {
+      this.setState({attendants_search:[]});
       return
     }
     const keyword = event.target.value
@@ -70,6 +71,11 @@ class EventCreateForm extends Component {
         attendants_search:matches
       })
     })
+  }
+
+  _handleCheck = (event) => {
+    event.preventDefault();
+    console.log(event)
   }
 
   render(){
@@ -89,7 +95,7 @@ class EventCreateForm extends Component {
             <input name='attendants' onChange = {this._findAttendants}/>
             <ul>
               {this.state.attendants_search.map((user) => (
-                <label><input type='checkbox'/>{user.name}</label>
+                <label><input type='checkbox' id = {user.id} onChange={this._handleCheck}/>{user.name}</label>
               ))}
             </ul>
           </div>
