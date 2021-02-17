@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ButtonCreateEvent from './ButtonCreateEvent'
+import { config } from './Constants'
 
-const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants.json'
+
+const ALL_RESTAURANTS_URL = config.url.API_URL + '/restaurants.json'
 
 class ShowRestaurantList extends Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class ShowRestaurantList extends Component {
     }
     axios.get(ALL_RESTAURANTS_URL).then((response) => {
       const restaurants = response.data.filter((restaurant) =>
-        restaurant.user.id === props.user.id
+        restaurant.user && restaurant.user.id === props.user.id
       );
       console.log(restaurants);
       this.setState({restaurantList: restaurants})

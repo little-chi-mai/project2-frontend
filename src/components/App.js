@@ -10,7 +10,10 @@ import EventCreate from './EventCreate'
 import Home from './Home'
 import Wishlist from './Wishlist'
 import EventList from './EventList'
+import { config } from './Constants'
 
+
+const SERVER_URL = config.url.API_URL + 'logged_in'
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +29,7 @@ class App extends Component {
 
   // CHANGE TO MATCH RAILS SERVER port. mine is 3000
   loginStatus = () => {
-    axios.get('http://localhost:3000/logged_in', {withCredentials: true})
+    axios.get(SERVER_URL, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)

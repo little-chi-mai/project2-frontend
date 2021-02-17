@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import axios from 'axios';
 import ButtonCreateEvent from './ButtonCreateEvent';
+import { config } from './Constants'
+
 
 const GetRestaurant_URL = (id) => {
-  return `http://localhost:3000/restaurants/${id}`
+  return config.url.API_URL + `restaurants/${id}`
 }
 
 const GetId = () => {
