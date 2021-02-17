@@ -10,6 +10,7 @@ class SearchForm extends Component {
     }
     this._handleInput = this._handleInput.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this.clearInput = this.clearInput.bind(this);
   }
 
   _handleInput(event) {
@@ -21,7 +22,6 @@ class SearchForm extends Component {
 
   _handleSubmit(event) {
     event.preventDefault();
-    console.log('_handleSubmit');
     this.setState({isQueryChanged: false});
     if (this.state.isQueryChanged === true) {
       this.props.onSubmit(this.state.query);
@@ -30,10 +30,14 @@ class SearchForm extends Component {
     }
   }
 
+  clearInput() {
+    this.setState({query: ''})
+  }
+
   render() {
     return(
         <form onSubmit={this._handleSubmit}>
-          <input onInput={this._handleInput}/>
+          <input onInput={this._handleInput} value={this.state.query}/>
           <button>Hmm...{this.state.query}?</button>
         </form>
     )

@@ -32,7 +32,7 @@ class ShowRestaurantList extends Component {
     return(
       <div>
         {this.state.restaurantList.map(restaurant =>
-          <div>
+          <div key={restaurant.id}>
             <h3>{restaurant.name}</h3>
             <ButtonCreateEvent restaurant={restaurant}/>
             <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
