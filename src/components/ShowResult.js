@@ -31,7 +31,7 @@ class ShowResult extends Component {
             }
           </div>
         }
-        {!this.props.restaurant && this.props.isRequested &&
+        {!this.props.restaurant && this.props.searchButtonClicked &&
           <div>
             <h3>...No such thing on Earth, dude!</h3>
           </div>
