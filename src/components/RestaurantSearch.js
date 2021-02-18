@@ -60,7 +60,6 @@ class RestaurantSearch extends Component {
       })
       this.fetchRandomNum();
     });
-
   }
 
   fetchRandomNum() {

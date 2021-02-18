@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ButtonAddToWishList from './ButtonAddToWishList'
 import ButtonAddAndCreate from './ButtonAddAndCreate'
+import axios from 'axios'
 
 class ShowResult extends Component {
   constructor(props) {
@@ -8,7 +9,27 @@ class ShowResult extends Component {
     this.state = {
       restaurant: props.restaurant
     }
+    this.fetchImage = this.fetchImage.bind(this)
+    this.fetchImage();
   }
+
+  fetchImage(reference) {
+    const generateURL = function(reference) {
+      return [
+        'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=',
+        reference,
+        '&key=AIzaSyDpF67gcwqJT5Lku1Aj-78unvq0OpKUNpA'
+      ].join('')
+    };
+
+    axios.get(generateURL(reference)).then((response) => {
+      // this.setState({
+      //   image: response
+      // })
+      console.log(response)
+    });
+  }
+
 
   render() {
     return(
@@ -36,6 +57,8 @@ class ShowResult extends Component {
             <h3>...No such thing on Earth, dude!</h3>
           </div>
         }
+
+        <img src="" alt="Image coming soon"/>
       </div>
     )
   }
