@@ -121,7 +121,6 @@ class EventCreateForm extends Component {
     return(
       <div>
         <h2>Create Event</h2>
-        <h3>Venue:</h3>
         <form onSubmit = {this._handleSubmit}>
           <label>Title</label>
           <input name='title' onChange = {this._handleChange} required/>
