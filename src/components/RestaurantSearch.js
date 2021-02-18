@@ -6,7 +6,11 @@ import axios from 'axios';
 
 // const SEARCH_RAILS_URL = 'http://localhost:3000/search/'
 
-
+const searchBoxStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '20px'
+}
 
 class RestaurantSearch extends Component {
   constructor(props) {
@@ -25,6 +29,7 @@ class RestaurantSearch extends Component {
 
 
   fetchRestaurants(term) {
+    console.log("ABOUT TO FETCH")
     const generateURL = function(term) {
       return [
         'https://maps.googleapis.com/maps/api/place/textsearch/json?query=',
@@ -64,7 +69,7 @@ class RestaurantSearch extends Component {
   }
 
   fetchRandomNum() {
-    // console.log('fetchRandomNum()')
+    console.log('fetchRandomNum()')
     const randomNum = Math.floor(Math.random() * this.state.restaurants.length);
     this.setState({randomNum: randomNum})
   }
@@ -79,11 +84,17 @@ class RestaurantSearch extends Component {
   render() {
     return(
       <div>
-        <button onClick={this._handleSubmit}>
-          Adventurous!
-        </button>
-        <h3>or</h3>
-        <SearchForm {...this.props} {...this.state} onSubmit={this.fetchRestaurants} fetchRandomNum={this.fetchRandomNum}/>
+        <div style={searchBoxStyle}>
+          <SearchForm {...this.props} {...this.state} onSubmit={this.fetchRestaurants} fetchRandomNum={this.fetchRandomNum}/>
+        </div>
+        <div>
+          <h3 style={searchBoxStyle}>or</h3>
+        </div>
+        <div style={searchBoxStyle}>
+          <button onClick={this._handleSubmit} style={{backgroundColor: '#E85551', fontSize: '2em'}}>
+            Adventurous!
+          </button>
+        </div>
         <ShowResult {...this.props} {...this.state} restaurant={this.state.restaurants[this.state.randomNum]}/>
       </div>
     )

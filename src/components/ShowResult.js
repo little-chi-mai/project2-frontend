@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import ButtonAddToWishList from './ButtonAddToWishList'
 import ButtonAddAndCreate from './ButtonAddAndCreate'
+import axios from 'axios'
+import Card from 'react-bootstrap/Card'
+
+
 
 class ShowResult extends Component {
   constructor(props) {
@@ -14,28 +18,32 @@ class ShowResult extends Component {
     return(
       <div>
         {this.props.restaurant &&
-          <div>
-            <h3>{this.props.restaurant.name}</h3>
-            {this.props.restaurant.name &&
-            <div>
-              <ButtonAddToWishList {...this.props} restaurant={this.props.restaurant}/>
-              <ButtonAddAndCreate {...this.props} restaurant={this.props.restaurant}/>
-            </div>}
+          <Card>
+            <Card.Body>
 
-            <p>{this.props.restaurant.formatted_address}</p>
-            {this.props.restaurant.rating &&
-              <p>Rating: {this.props.restaurant.rating}</p>
-            }
-            {this.props.restaurant.user_ratings_total &&
-              <p>Total user rating: {this.props.restaurant.user_ratings_total}</p>
-            }
-          </div>
+                <h3>{this.props.restaurant.name}</h3>
+                {this.props.restaurant.name &&
+                <div>
+                  <ButtonAddToWishList {...this.props} restaurant={this.props.restaurant}/>
+                  <ButtonAddAndCreate {...this.props} restaurant={this.props.restaurant}/>
+                </div>}
+
+                <p>{this.props.restaurant.formatted_address}</p>
+                {this.props.restaurant.rating &&
+                  <p>Rating: {this.props.restaurant.rating}</p>
+                }
+                {this.props.restaurant.user_ratings_total &&
+                  <p>Total user rating: {this.props.restaurant.user_ratings_total}</p>
+                }
+            
+            </Card.Body>
+            <Card.Img variant="bottom" src="" alt="Image coming soon" />
+          </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&
-          <div>
-            <h3>...No such thing on Earth, dude!</h3>
-          </div>
+          <h3>...No such thing on Earth, dude!</h3>
         }
+
       </div>
     )
   }

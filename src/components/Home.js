@@ -1,6 +1,7 @@
 import React from 'react'
 import RestaurantSearch from './RestaurantSearch'
 
+
 function Home(props) {
   return(
     <div>

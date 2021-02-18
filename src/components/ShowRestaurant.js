@@ -22,10 +22,8 @@ class ShowRestaurant extends Component {
     this.state = {
       restaurant: {}
     }
-    console.log(props.match.params.id);
 
     const restaurant_URL = GetRestaurant_URL(props.match.params.id);
-    console.log(restaurant_URL);
 
     const fetchRestaurant = () => {
       console.log("fetchRestaurant()");

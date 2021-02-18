@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ButtonCreateEvent from './ButtonCreateEvent'
-import { config } from './Constants'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
+const style = {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '5px'
+}
 
 
 const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/' + 'restaurants.json'
@@ -17,7 +26,6 @@ class ShowRestaurantList extends Component {
       restaurantList: []
     }
     this.updateList = this.updateList.bind(this)
-    this.updateList();
   }
 
   updateList() {
@@ -29,24 +37,38 @@ class ShowRestaurantList extends Component {
     })
   }
 
+  componentDidMount() {
+    this.updateList();
+  }
+
 
   render() {
     return(
-      <div>
-        {this.state.restaurantList.map(restaurant =>
-          <div key={restaurant.id}>
-            <h3>{restaurant.name}</h3>
-            <ButtonCreateEvent restaurant={restaurant}/>
-            <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
-            <p>Address: {restaurant.address}</p>
-            <p>Website: <a href={restaurant.website}>{restaurant.website}</a></p>
-            <p>Contact: {restaurant.contact}</p>
-            <p>Rating: {restaurant.rating}/5</p>
-            <p>Price level: {restaurant.price_level}/5</p>
-            <p>Restaurant's photo coming soon</p>
-          </div>
-        )}
-      </div>
+      <CardDeck style={style}>
+        <Row >
+          {this.state.restaurantList.map(restaurant =>
+            <Col key={restaurant.id} style={{marginTop: '5px'}} lg={6}>
+              <Card>
+                <Card.Img variant="top" src="" />
+                <Card.Body>
+                    <div>
+                      <h3>{restaurant.name}</h3>
+                      <ButtonCreateEvent restaurant={restaurant} style={{margin: '5px'}}/>
+                      <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
+                      <p>Address: {restaurant.address}</p>
+                      <p>Website: <a href={restaurant.website}>{restaurant.website}</a></p>
+                      <p>Contact: {restaurant.contact}</p>
+                      <p>Rating: {restaurant.rating}/5</p>
+                      <p>Price level: {restaurant.price_level}/5</p>
+                    </div>
+
+                </Card.Body>
+              </Card>
+          </Col>
+          )}
+        </Row>
+      </CardDeck>
+
     )
   }
 }
