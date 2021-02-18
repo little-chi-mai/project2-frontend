@@ -62,8 +62,8 @@ class App extends Component {
 
           <Switch>
             <Route path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
-            <Route path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
-            <Route path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
+            <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+            <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
             <Route path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
