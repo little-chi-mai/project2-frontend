@@ -61,16 +61,16 @@ class App extends Component {
           <NavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
           <Switch>
-            <Route exact path='/project2-frontend/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
-            <Route exact path='/project2-frontend/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
-            <Route exact path='/project2-frontend/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
+            <Route path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
+            <Route path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+            <Route path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
-            <Route exact path='/project2-frontend/event/:id' component = {() => <EventShow {...this.state} />} />
+            <Route path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
-            <Route exact path='/project2-frontend/restaurant/:id' component={ShowRestaurant} />
-            <Route exact path='/project2-frontend/wishlist' component={() => <Wishlist {...this.state} />} />
-            <Route exact path='/project2-frontend/events' component={() => <EventList {...this.state} />} />
-            <Route exact path='/project2-frontend/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
+            <Route path='/restaurant/:id' component={ShowRestaurant} />
+            <Route path='/wishlist' component={() => <Wishlist {...this.state} />} />
+            <Route path='/events' component={() => <EventList {...this.state} />} />
+            <Route path='/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
 
 
           </Switch>
