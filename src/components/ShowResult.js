@@ -35,9 +35,8 @@ class ShowResult extends Component {
                 {this.props.restaurant.user_ratings_total &&
                   <p>Total user rating: {this.props.restaurant.user_ratings_total}</p>
                 }
-            
+
             </Card.Body>
-            <Card.Img variant="bottom" src="" alt="Image coming soon" />
           </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&

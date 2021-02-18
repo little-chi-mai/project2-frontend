@@ -56,10 +56,10 @@ class ShowRestaurantList extends Component {
                       <ButtonCreateEvent restaurant={restaurant} style={{margin: '5px'}}/>
                       <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
                       <p>Address: {restaurant.address}</p>
-                      <p>Website: <a href={restaurant.website}>{restaurant.website}</a></p>
-                      <p>Contact: {restaurant.contact}</p>
-                      <p>Rating: {restaurant.rating}/5</p>
-                      <p>Price level: {restaurant.price_level}/5</p>
+                      {restaurant.website && <p>Website: <a href={restaurant.website}>{restaurant.website}</a></p>}
+                      {restaurant.contact && <p>Contact: {restaurant.contact}</p>}
+                      {restaurant.rating && <p>Rating: {restaurant.rating}/5</p>}
+                      {restaurant.price_level && <p>Price level: {restaurant.price_level}/5</p>}
                     </div>
 
                 </Card.Body>

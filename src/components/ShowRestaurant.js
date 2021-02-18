@@ -41,11 +41,10 @@ class ShowRestaurant extends Component {
       <div>
         <h2>{this.state.restaurant.name}</h2>
         <p>Address: {this.state.restaurant.address}</p>
-        <p>Website: <a href={this.state.restaurant.website}>{this.state.restaurant.website}</a></p>
-        <p>Contact: {this.state.restaurant.contact}</p>
-        <p>Rating: {this.state.restaurant.rating}/5</p>
-        <p>Price level: {this.state.restaurant.price_level}/5</p>
-        <p>Restaurant's photo coming soon</p>
+        {this.state.restaurant.website && <p>Website: <a href={this.state.restaurant.website}>{this.state.restaurant.website}</a></p>}
+        {this.state.restaurant.contact && <p>Contact: {this.state.restaurant.contact}</p>}
+        {this.state.restaurant.rating && <p>Rating: {this.state.restaurant.rating}/5</p>}
+        {this.state.restaurant.price_level && <p>Price level: {this.state.restaurant.price_level}/5</p>}
 
         <ButtonCreateEvent restaurant={this.state.restaurant}/>
       </div>

@@ -29,7 +29,7 @@ class ImageShow extends Component {
   render() {
     return(
       <div>
-        Image coming soon
+        // Image coming soon
       </div>
     )
   }
