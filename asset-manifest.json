@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/project2-frontend/static/css/main.54b62e4d.chunk.css",
-    "main.js": "/project2-frontend/static/js/main.1ccb5a8b.chunk.js",
-    "main.js.map": "/project2-frontend/static/js/main.1ccb5a8b.chunk.js.map",
+    "main.css": "/project2-frontend/static/css/main.1b9b5794.chunk.css",
+    "main.js": "/project2-frontend/static/js/main.9d2cb71d.chunk.js",
+    "main.js.map": "/project2-frontend/static/js/main.9d2cb71d.chunk.js.map",
     "runtime-main.js": "/project2-frontend/static/js/runtime-main.8605a43d.js",
     "runtime-main.js.map": "/project2-frontend/static/js/runtime-main.8605a43d.js.map",
     "static/css/2.150d169a.chunk.css": "/project2-frontend/static/css/2.150d169a.chunk.css",
-    "static/js/2.e868656c.chunk.js": "/project2-frontend/static/js/2.e868656c.chunk.js",
-    "static/js/2.e868656c.chunk.js.map": "/project2-frontend/static/js/2.e868656c.chunk.js.map",
+    "static/js/2.e81bb1b9.chunk.js": "/project2-frontend/static/js/2.e81bb1b9.chunk.js",
+    "static/js/2.e81bb1b9.chunk.js.map": "/project2-frontend/static/js/2.e81bb1b9.chunk.js.map",
     "static/js/3.9c6ae19a.chunk.js": "/project2-frontend/static/js/3.9c6ae19a.chunk.js",
     "static/js/3.9c6ae19a.chunk.js.map": "/project2-frontend/static/js/3.9c6ae19a.chunk.js.map",
     "index.html": "/project2-frontend/index.html",
     "static/css/2.150d169a.chunk.css.map": "/project2-frontend/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.54b62e4d.chunk.css.map": "/project2-frontend/static/css/main.54b62e4d.chunk.css.map",
-    "static/js/2.e868656c.chunk.js.LICENSE.txt": "/project2-frontend/static/js/2.e868656c.chunk.js.LICENSE.txt",
-    "static/media/food-pattern.d32b9b70.jpg": "/project2-frontend/static/media/food-pattern.d32b9b70.jpg"
+    "static/css/main.1b9b5794.chunk.css.map": "/project2-frontend/static/css/main.1b9b5794.chunk.css.map",
+    "static/js/2.e81bb1b9.chunk.js.LICENSE.txt": "/project2-frontend/static/js/2.e81bb1b9.chunk.js.LICENSE.txt",
+    "static/media/food-pattern.d32b9b70.jpg": "/project2-frontend/static/media/food-pattern.d32b9b70.jpg",
+    "static/media/logo.451f0f8c.png": "/project2-frontend/static/media/logo.451f0f8c.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8605a43d.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.e868656c.chunk.js",
-    "static/css/main.54b62e4d.chunk.css",
-    "static/js/main.1ccb5a8b.chunk.js"
+    "static/js/2.e81bb1b9.chunk.js",
+    "static/css/main.1b9b5794.chunk.css",
+    "static/js/main.9d2cb71d.chunk.js"
   ]
 }
