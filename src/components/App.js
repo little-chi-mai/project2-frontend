@@ -73,13 +73,13 @@ class App extends Component {
           <BrowserRouter>
 
             <Switch>
-              <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
+              <Route exact path='/project2-frontend' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
               <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
               <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
               <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
-              <Route exact path='/project2-frontend' component = {() => <Welcome {...this.state} />} />
+          
 
               <Route exact path='/restaurant/:id' component={ShowRestaurant} />
               <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
