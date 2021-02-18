@@ -13,6 +13,7 @@ import EventList from './EventList'
 import Container from 'react-bootstrap/Container';
 import Background from './food-pattern.jpg';
 import Navbar from 'react-bootstrap/Navbar'
+import Welcome from './Welcome'
 
 var appStyle = {
   backgroundSize: '100vh',
@@ -22,6 +23,7 @@ var appStyle = {
 
 
 const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
+
 
 class App extends Component {
   constructor(props) {
@@ -76,6 +78,8 @@ class App extends Component {
               <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
               <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
+
+              <Route exact path='/project2-frontend' component = {() => <Welcome {...this.state} />} />
 
               <Route exact path='/restaurant/:id' component={ShowRestaurant} />
               <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
