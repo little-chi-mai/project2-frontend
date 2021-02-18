@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/project2-frontend/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/project2-frontend/static/js/main.7bb83357.chunk.js",
-    "main.js.map": "/project2-frontend/static/js/main.7bb83357.chunk.js.map",
-    "runtime-main.js": "/project2-frontend/static/js/runtime-main.daed3f23.js",
-    "runtime-main.js.map": "/project2-frontend/static/js/runtime-main.daed3f23.js.map",
-    "static/js/2.5cc61671.chunk.js": "/project2-frontend/static/js/2.5cc61671.chunk.js",
-    "static/js/2.5cc61671.chunk.js.map": "/project2-frontend/static/js/2.5cc61671.chunk.js.map",
-    "static/js/3.41095226.chunk.js": "/project2-frontend/static/js/3.41095226.chunk.js",
-    "static/js/3.41095226.chunk.js.map": "/project2-frontend/static/js/3.41095226.chunk.js.map",
+    "main.css": "/project2-frontend/static/css/main.54b62e4d.chunk.css",
+    "main.js": "/project2-frontend/static/js/main.1ccb5a8b.chunk.js",
+    "main.js.map": "/project2-frontend/static/js/main.1ccb5a8b.chunk.js.map",
+    "runtime-main.js": "/project2-frontend/static/js/runtime-main.8605a43d.js",
+    "runtime-main.js.map": "/project2-frontend/static/js/runtime-main.8605a43d.js.map",
+    "static/css/2.150d169a.chunk.css": "/project2-frontend/static/css/2.150d169a.chunk.css",
+    "static/js/2.e868656c.chunk.js": "/project2-frontend/static/js/2.e868656c.chunk.js",
+    "static/js/2.e868656c.chunk.js.map": "/project2-frontend/static/js/2.e868656c.chunk.js.map",
+    "static/js/3.9c6ae19a.chunk.js": "/project2-frontend/static/js/3.9c6ae19a.chunk.js",
+    "static/js/3.9c6ae19a.chunk.js.map": "/project2-frontend/static/js/3.9c6ae19a.chunk.js.map",
     "index.html": "/project2-frontend/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/project2-frontend/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.5cc61671.chunk.js.LICENSE.txt": "/project2-frontend/static/js/2.5cc61671.chunk.js.LICENSE.txt"
+    "static/css/2.150d169a.chunk.css.map": "/project2-frontend/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.54b62e4d.chunk.css.map": "/project2-frontend/static/css/main.54b62e4d.chunk.css.map",
+    "static/js/2.e868656c.chunk.js.LICENSE.txt": "/project2-frontend/static/js/2.e868656c.chunk.js.LICENSE.txt",
+    "static/media/food-pattern.d32b9b70.jpg": "/project2-frontend/static/media/food-pattern.d32b9b70.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.daed3f23.js",
-    "static/js/2.5cc61671.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.7bb83357.chunk.js"
+    "static/js/runtime-main.8605a43d.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.e868656c.chunk.js",
+    "static/css/main.54b62e4d.chunk.css",
+    "static/js/main.1ccb5a8b.chunk.js"
   ]
 }
