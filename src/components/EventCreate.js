@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:3000/events'
+const SERVER_URL = config.url.API_URL + 'events'
 
 const EventCreate = (props) => {
   const {id} = useParams();
