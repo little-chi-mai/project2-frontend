@@ -4,7 +4,8 @@ import{ Link } from 'react-router-dom'
 import { config } from './Constants'
 
 
-const SERVER_URL = config.url.API_URL + 'login'
+const SERVER_URL = 'http://localhost:3000/login'
+
 
 //guide has username, we already have name in the db
 class Login extends Component {
@@ -32,7 +33,7 @@ class Login extends Component {
       password: password
     }
 
-    axios.post(SERVER_URL, { user },{ withCredentials: true })
+    axios.post(SERVER_URL, user,{ withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
