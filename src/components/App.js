@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import NavBar from './NavBar'
+import MyNavBar from './MyNavBar'
 import Login from './Login'
 import Signup from './Signup'
 import ShowRestaurant from './ShowRestaurant'
@@ -10,6 +10,15 @@ import EventCreate from './EventCreate'
 import Home from './Home'
 import Wishlist from './Wishlist'
 import EventList from './EventList'
+import Container from 'react-bootstrap/Container';
+import Background from './food-pattern.jpg';
+import Navbar from 'react-bootstrap/Navbar'
+
+var appStyle = {
+  backgroundSize: '100vh',
+  backgroundRepeat: 'repeat',
+  backgroundImage: `url(${Background})`,
+};
 
 
 class App extends Component {
@@ -53,26 +62,33 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <NavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
+      <div style={ appStyle }>
+        <MyNavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
-          <Switch>
-            <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
-            <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
-            <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
+        <Container style={{backgroundColor: '#F7BA89', minHeight: '100vh', position: 'relative'}}>
+          <BrowserRouter>
 
-            <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
+            <Switch>
+              <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
+              <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+              <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
-            <Route exact path='/restaurant/:id' component={ShowRestaurant} />
-            <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
-            <Route exact path='/events' component={() => <EventList {...this.state} />} />
-            <Route exact path='/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
+              <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
-
-          </Switch>
-        </BrowserRouter>
+              <Route exact path='/restaurant/:id' component={ShowRestaurant} />
+              <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
+              <Route exact path='/events' component={() => <EventList {...this.state} />} />
+              <Route exact path='/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
+            </Switch>
+          </BrowserRouter>
+        </Container>
+        <Navbar className="align-right" bg="dark" variant="dark">
+          <Navbar.Brand>
+            Proudly brought to you by KNYM
+          </Navbar.Brand>
+        </Navbar>
       </div>
+
     );
   }
 };

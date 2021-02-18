@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
 import ShowResult from './ShowResult'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+
+const searchBoxStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '5px'
+}
 
 class SearchForm extends Component {
   constructor() {
@@ -46,10 +55,10 @@ class SearchForm extends Component {
 
   render() {
     return(
-        <form onSubmit={this._handleSubmit}>
-          <input onInput={this._handleInput} value={this.state.query}/>
-          <button>Hmm...{this.state.query}?</button>
-        </form>
+      <form onSubmit={this._handleSubmit} style={searchBoxStyle}>
+        <input onInput={this._handleInput} value={this.state.query} placeholder='Anything, really' style={{fontSize: '2em'}}/>
+        <button style={{backgroundColor: '#2A8093', fontSize: '2em'}}>Hmm...{this.state.query}?</button>
+      </form>
     )
   }
 }
