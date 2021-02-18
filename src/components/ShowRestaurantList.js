@@ -4,10 +4,10 @@ import ButtonCreateEvent from './ButtonCreateEvent'
 import { config } from './Constants'
 
 
-const ALL_RESTAURANTS_URL = config.url.API_URL + 'restaurants.json'
+const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/' + 'restaurants.json'
 
 const GetRestaurantURL = (id) => {
-  return config.url.API_URL + `restaurants/${id}.json`
+  return 'https://agile-tor-91190.herokuapp.com/' + `restaurants/${id}.json`
 }
 
 class ShowRestaurantList extends Component {

@@ -8,7 +8,7 @@ import { config } from './Constants'
 
 
 const GET_EVENT_URL = (id) =>{
-  return config.url.API_URL + `events/${id}.json`
+  return 'https://agile-tor-91190.herokuapp.com/' + `events/${id}.json`
 }
 
 const EventShow = (props) => {

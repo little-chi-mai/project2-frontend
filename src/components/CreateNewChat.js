@@ -3,7 +3,7 @@ import axios from 'axios';
 import { config } from './Constants'
 
 
-const SERVER_URL = config.url.API_URL + 'chats'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/chats'
 
 class CreateNewChat extends Component {
   constructor(props) {

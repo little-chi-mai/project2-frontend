@@ -3,7 +3,7 @@ import axios from 'axios'
 import { config } from './Constants'
 
 
-const SERVER_URL = config.url.API_URL + 'users'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/users'
 
 //guide calls for username, we already have name in the DB
 class Signup extends Component {

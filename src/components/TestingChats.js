@@ -4,7 +4,7 @@ import ChatsDisplay from './ChatsDisplay'
 import { config } from './Constants'
 
 
-const SERVER_URL = config.url.API_URL + 'chats.json'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'chats.json'
 
 class TestingChats extends Component {
   constructor(props){

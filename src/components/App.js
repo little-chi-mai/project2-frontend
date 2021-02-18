@@ -13,7 +13,7 @@ import EventList from './EventList'
 import { config } from './Constants'
 
 
-const SERVER_URL = config.url.API_URL + 'logged_in'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
 
 class App extends Component {
   constructor(props) {

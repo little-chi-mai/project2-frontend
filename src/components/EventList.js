@@ -3,7 +3,7 @@ import axios from 'axios';
 import { config } from './Constants'
 
 
-const ALL_EVENTS_URL = config.url.API_URL + 'events.json'
+const ALL_EVENTS_URL = 'https://agile-tor-91190.herokuapp.com/events.json'
 
 class EventList extends Component {
   constructor(props) {
