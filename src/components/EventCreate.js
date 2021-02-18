@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import axios from 'axios';
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/events'
+const SERVER_URL = 'http://localhost:3000/events'
 
 const EventCreate = (props) => {
   const {id} = useParams();
@@ -21,7 +21,7 @@ class EventCreateForm extends Component {
       title:'',
       date:'',
       introduction:'',
-      user:this.props.user,
+      user_id: this.props.user.id,
       restaurant_id: this.props.restaurant_id,
       attendants:[],
       attendants_search:[],
@@ -30,6 +30,7 @@ class EventCreateForm extends Component {
     this._handleSubmit = this._handleSubmit.bind(this)
     this._findAttendants = this._findAttendants.bind(this)
     this._handleCheckbox = this._handleCheckbox.bind(this)
+    console.log(this.props.user.id)
   }
 
   _handleChange = (event) => {
@@ -41,12 +42,12 @@ class EventCreateForm extends Component {
 
   _handleSubmit = (event) => {
     event.preventDefault();
-    const {title, date, introduction, user, restaurant_id, attendants, _} = this.state;
+    const {title, date, introduction, user_id, restaurant_id, attendants, _} = this.state;
     let newEvent = {
       title:title,
       date:date,
       introduction:introduction,
-      user:user,
+      user_id:user_id,
       restaurant_id:restaurant_id
     };
     console.log(newEvent)
@@ -68,7 +69,7 @@ class EventCreateForm extends Component {
       attendants.map((user) => {
         let newAttendant = {user_id: user.id, event_id: found.id};
         console.log(newAttendant)
-        axios.post('https://agile-tor-91190.herokuapp.com/attendants', newAttendant).then((response) => {
+        axios.post('http://localhost:3000/attendants', newAttendant).then((response) => {
           console.log(response)
         })
       })
@@ -82,7 +83,7 @@ class EventCreateForm extends Component {
       return
     }
     const keyword = event.target.value
-    axios.get('https://agile-tor-91190.herokuapp.com/users').then((response) => {
+    axios.get('http://localhost:3000/users').then((response) => {
       const users = response.data.users;
       const matches = users.filter(user => {
         const regex = new RegExp(keyword, 'gi');
@@ -125,7 +126,7 @@ class EventCreateForm extends Component {
           <label>Title</label>
           <input name='title' onChange = {this._handleChange} required/>
           <label>Date</label>
-          <input placeholder='2020-12-31' name='date' onChange = {this._handleChange} required/>
+          <input placeholder='2020-12-31' name='date' type='date' onChange = {this._handleChange} required/>
           <label>Summary</label>
           <textarea name='introduction'onChange = {this._handleChange}/>
           <div>

@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { config } from './Constants'
+import Card from 'react-bootstrap/Card'
 
 
-const ALL_EVENTS_URL = 'https://agile-tor-91190.herokuapp.com/events.json'
+const ALL_EVENTS_URL = 'http://localhost:3000/events.json'
+
+const style = {
+  margin: '5px',
+  padding: '10px'
+}
 
 class EventList extends Component {
   constructor(props) {
@@ -11,15 +17,13 @@ class EventList extends Component {
     this.state = {
       eventList: []
     }
+  }
+  componentDidMount() {
     axios.get(ALL_EVENTS_URL).then((response) => {
-      console.log(response);
-
       const events = response.data.filter((event) =>
-        event.user && event.user.id === props.user.id
+        event.user && event.user.id === this.props.user.id
       );
-      console.log(events);
       this.setState({eventList: events})
-      console.log(this.state.eventList)
     })
   }
 
@@ -29,11 +33,14 @@ class EventList extends Component {
       <div>
         <h1>Your Events</h1>
         {this.state.eventList.map(event =>
-          <div>
-            <h3>{event.title}</h3>
+          <Card style={style}>
+          <div key={event.id}>
+            <h4>{event.title}</h4>
             <p>Introduction: {event.introduction}</p>
             <p>Date: {event.date}</p>
+            <a href={`/event/${event.id}`}><button>Show event</button></a>
           </div>
+          </Card>
         )}
       </div>
     )

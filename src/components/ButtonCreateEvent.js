@@ -6,9 +6,7 @@ import {AddToWishList} from './ButtonAddToWishList'
 function ButtonCreateEvent(props) {
 
   return(
-    <button>
-      <a href={'/restaurant/' + props.restaurant.id + '/create-event'}>Create Event</a>  
-    </button>
+    <a href={'/restaurant/' + props.restaurant.id + '/create-event'}><button>Create Event</button></a>  
   )
 }
 
