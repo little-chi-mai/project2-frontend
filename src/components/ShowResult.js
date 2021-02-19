@@ -38,7 +38,7 @@ class ShowResult extends Component {
                 }
 
             </Card.Body>
-            <ImageShow photoreference={this.props.restaurant.photos[0].photo_reference} />
+            {this.props.restaurant && <ImageShow photoreference={this.props.restaurant.photos[0].photo_reference} />}
           </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&

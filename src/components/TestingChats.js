@@ -13,18 +13,23 @@ class TestingChats extends Component {
       id: this.props.event_id,
       chats:[]
     }
+    this.fetchChats = this.fetchChats.bind(this)
+  }
 
-    const fetchChats = () => {
-      axios.get(SERVER_URL).then((response) => {
-        const chat = response.data.filter(chatInfo => chatInfo.event_id === this.state.id
-        );
-        this.setState({
-          chats: chat
-        });
-        setTimeout(fetchChats, 2000);
+  fetchChats() {
+    axios.get(SERVER_URL).then((response) => {
+      const chat = response.data.filter(chat =>
+        chat.event && chat.event.id === this.state.id
+      );
+      this.setState({
+        chats: chat
       });
-    }
-    fetchChats()
+      setTimeout(this.fetchChats, 4000);
+    });
+  }
+
+  componentDidMount() {
+    this.fetchChats();
   }
 
   render(){

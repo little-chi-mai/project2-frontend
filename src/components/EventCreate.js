@@ -42,6 +42,7 @@ class EventCreateForm extends Component {
   }
 
   _handleSubmit = (event) => {
+    console.log('HANDLESUBMIT')
     event.preventDefault();
     const {title, date, introduction, user_id, restaurant_id, attendants, _} = this.state;
     let newEvent = {
@@ -149,7 +150,7 @@ class EventCreateForm extends Component {
             </ul>
           </div>
 
-          <button><a href="/events">Create Event</a></button>
+          <button>Create Event</button>
         </form>
       </div>
     )
