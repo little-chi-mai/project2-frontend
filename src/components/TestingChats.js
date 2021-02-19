@@ -21,7 +21,7 @@ class TestingChats extends Component {
         this.setState({
           chats: chat
         });
-        setTimeout(fetchChats, 4000);
+        setTimeout(fetchChats, 2000);
       });
     }
     fetchChats()
@@ -30,7 +30,7 @@ class TestingChats extends Component {
   render(){
     return(
       <div>
-        <h2>Testing</h2>
+        <h3>Chatbox</h3>
         <ChatsDisplay chats={this.state.chats}/>
       </div>
     )

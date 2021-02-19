@@ -22,14 +22,15 @@ var appStyle = {
 };
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
+// const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
+const SERVER_URL = 'http://localhost:3000/' + 'logged_in'
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       user: {}
     };
   }
@@ -73,13 +74,13 @@ class App extends Component {
           <BrowserRouter>
 
             <Switch>
-              <Route exact path='/project2-frontend' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
+              <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
               <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
               <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
               <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
 
-          
+              <Route exact path='/project2-frontend' component = {() => <Welcome {...this.state} />} />
 
               <Route exact path='/restaurant/:id' component={ShowRestaurant} />
               <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />

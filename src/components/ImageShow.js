@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import axios from 'axios'
 
 class ImageShow extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       image: ''
     }

@@ -53,8 +53,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.center {
-  display: 'flex' !important;
-  justify-content: 'center' !important;
-}
