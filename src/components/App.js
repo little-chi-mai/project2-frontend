@@ -51,10 +51,10 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   }
 
-  handleLogin = (data) => {
+  handleLogin = (user) => {
     this.setState({
       isLoggedIn: true,
-      user: data.data.user
+      user: user
     })
   }
 
@@ -68,10 +68,10 @@ class App extends Component {
   render() {
     return (
       <div style={ appStyle }>
-        <MyNavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
         <Container style={{backgroundColor: '#F7BA89', minHeight: '100vh', position: 'relative'}}>
           <BrowserRouter>
+          <MyNavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
             <Switch>
               <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
