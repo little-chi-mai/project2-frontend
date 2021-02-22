@@ -32,12 +32,13 @@ class EventList extends Component {
     return(
       <div>
         <h1>Your Events</h1>
-        {this.state.eventList.map(event =>
-          <Card style={style}>
-          <div key={event.id}>
-            <h4>{event.title}</h4>
-            <p>Introduction: {event.introduction}</p>
-            <p>Date: {event.date}</p>
+        {this.state.eventList && this.state.eventList.map(event =>
+          <Card key={event.id} style={style}>
+          <div>
+            {event.title && <h4>{event.title}</h4>}
+            {event.restaurant && <h6>Venue: <strong>{event.restaurant.name}</strong></h6>}
+            {event.introduction && <p>Introduction: {event.introduction}</p>}
+            {event.date && <p>Date: {event.date}</p>}
             <a href={`/event/${event.id}`}><button>Show event</button></a>
           </div>
           </Card>

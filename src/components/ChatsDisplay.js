@@ -5,7 +5,7 @@ const ChatsDisplay = (props) => {
     <div>
       {props.chats.map((c) => {
         return(
-          <p key={c.id}>{c.user_id}: {c.content}</p>
+          <p key={c.id}>{c.user.name} said: {c.content}</p>
         )
       })}
     </div>

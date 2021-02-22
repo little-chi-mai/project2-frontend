@@ -41,8 +41,7 @@ class EventShowPage extends Component {
 
     const fetchEvent = () => {
       axios.get(EVENT_URL).then((response) => {
-        // console.log(response.data)
-        const event = response.data.event
+        const event = response.data
         this.setState({
           title:event.title,
           introduction: event.introduction,
@@ -74,7 +73,6 @@ class EventShowPage extends Component {
     let EVENT_URL = GET_EVENT_URL(this.state.id)
 
     axios.put(EVENT_URL, eventData).then((response) => {
-      console.log(response)
     })
     this.setState({
       edit:false,
@@ -95,10 +93,10 @@ class EventShowPage extends Component {
     return(
       <div>
         <h2>Event: {this.state.title}</h2>
-        <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>
-        <h3>Venue: {this.state.restaurant.name}</h3>
-        <h4>Attendants:{this.state.attendants.map((object) => {return object.user.name}).join(', ')}</h4>
-        <p>Summary: {this.state.introduction}</p>
+        {this.state.date && <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>}
+        {this.state.restaurant && <h3>Venue: {this.state.restaurant.name}</h3>}
+        {this.state.attendants && <h4>Attendants:{this.state.attendants.map((object) => {return object.user.name}).join(', ')}</h4>}
+        {this.state.introduction && <p>Summary: {this.state.introduction}</p>}
         <button onClick = {this._handleToggle}> Edit this event</button>
         <button onClick = {this._handleDelete}> Delete this event</button>
         <TestingChats event_id={this.state.id}/>

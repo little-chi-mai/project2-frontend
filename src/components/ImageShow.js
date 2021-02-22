@@ -2,14 +2,15 @@ import React, {Component} from 'react'
 import axios from 'axios'
 
 class ImageShow extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       image: ''
     }
+    this.fetchImage = this.fetchImage.bind(this)
   }
 
-  fetchRandomImage(reference) {
+  fetchImage(reference) {
     const generateURL = function(reference) {
       return [
         'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=',
@@ -22,14 +23,24 @@ class ImageShow extends Component {
       // this.setState({
       //   image: response
       // })
-      console.log(response)
+      this.setState({image: response.config.url})
     });
+  }
+
+  componentDidMount() {
+    this.fetchImage(this.props.photoreference)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.photoreference !== prevProps.photoreference) {
+      this.fetchImage(this.props.photoreference);
+    }
   }
 
   render() {
     return(
       <div>
-        // Image coming soon
+        <img src={this.state.image} alt=""/>
       </div>
     )
   }

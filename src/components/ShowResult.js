@@ -3,6 +3,7 @@ import ButtonAddToWishList from './ButtonAddToWishList'
 import ButtonAddAndCreate from './ButtonAddAndCreate'
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
+import ImageShow from './ImageShow'
 
 
 
@@ -37,6 +38,7 @@ class ShowResult extends Component {
                 }
 
             </Card.Body>
+            {this.props.restaurant && <ImageShow photoreference={this.props.restaurant.photos[0].photo_reference} />}
           </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&

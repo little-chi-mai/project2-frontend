@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import axios from 'axios';
 
 
+
 const SERVER_URL = 'http://localhost:3000/events'
 
 const EventCreate = (props) => {
@@ -41,6 +42,7 @@ class EventCreateForm extends Component {
   }
 
   _handleSubmit = (event) => {
+    console.log('HANDLESUBMIT')
     event.preventDefault();
     const {title, date, introduction, user_id, restaurant_id, attendants, _} = this.state;
     let newEvent = {
@@ -58,8 +60,6 @@ class EventCreateForm extends Component {
   }
 
   addAttendants(attendants, newEvent){
-    console.log(attendants)
-    console.log(this.state.attendants)
     axios.get(SERVER_URL + '.json').then((response) => {
       console.log(response.data)
       const found = response.data.find((event) => {
@@ -122,12 +122,21 @@ class EventCreateForm extends Component {
       <div>
         <h2>Create Event</h2>
         <form onSubmit = {this._handleSubmit}>
-          <label>Title</label>
-          <input name='title' onChange = {this._handleChange} required/>
-          <label>Date</label>
-          <input placeholder='2020-12-31' name='date' type='date' onChange = {this._handleChange} required/>
-          <label>Summary</label>
-          <textarea name='introduction'onChange = {this._handleChange}/>
+          <p>
+            <label>Title</label>
+            <input name='title' onChange = {this._handleChange} required/>
+          </p>
+
+          <p>
+            <label>Date</label>
+            <input placeholder='2020-12-31' name='date' type='date' onChange = {this._handleChange} required/>
+          </p>
+
+          <p>
+            <label>Summary</label>
+            <textarea name='introduction'onChange = {this._handleChange}/>
+          </p>
+
           <div>
             <label>Attendants</label>
             <input name='attendants' onChange = {this._findAttendants}/>

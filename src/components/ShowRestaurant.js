@@ -26,14 +26,11 @@ class ShowRestaurant extends Component {
     const restaurant_URL = GetRestaurant_URL(props.match.params.id);
 
     const fetchRestaurant = () => {
-      console.log("fetchRestaurant()");
       axios.get(restaurant_URL).then((response) => {
         this.setState({restaurant: response.data.restaurants});
       })
     }
-
     fetchRestaurant();
-    // console.log(this.state);
   }
 
   render() {
