@@ -37,7 +37,7 @@ class Login extends Component {
     axios.post(SERVER_URL, {user},{ withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
-        this.props.handleLogin(response.data)
+        this.props.handleLogin(response)
         this.redirect()
       } else {
         this.setState({
@@ -49,7 +49,7 @@ class Login extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push('/project2-frontend')
   }
 
   handleErrors = () => {
