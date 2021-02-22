@@ -13,10 +13,10 @@ const style = {
 }
 
 
-const ALL_RESTAURANTS_URL = 'http://localhost:3000/' + 'restaurants.json'
+const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/' + 'restaurants.json'
 
 const GetRestaurantURL = (id) => {
-  return 'http://localhost:3000/' + `restaurants/${id}.json`
+  return 'https://agile-tor-91190.herokuapp.com/' + `restaurants/${id}.json`
 }
 
 class ShowRestaurantList extends Component {

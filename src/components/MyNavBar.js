@@ -7,15 +7,9 @@ import axios from 'axios';
 
 
 
-const SERVER_URL = 'http://localhost:3000/' + 'logout';
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logout';
 
 const MyNavBar = (props) => {
-  const handleClick = () => {
-    axios.delete(SERVER_URL, {withCredentials: true}).then(response => {
-      props.history.push('/')
-    })
-    .catch(error => console.log(error))
-  }
 
   return (
     <Navbar sticky="top"  bg="dark" variant="dark">
@@ -33,9 +27,12 @@ const MyNavBar = (props) => {
             Your Events
           </Navbar.Brand>
 
-          <Navbar.Brand href="/project2-frontend/logout">
-            Log Out {props.user.name}
-          </Navbar.Brand>
+          {props.user &&
+            <Navbar.Brand href="/project2-frontend/logout">
+              Log Out {props.user.name}
+            </Navbar.Brand>
+          }
+
 
         </span>
       }

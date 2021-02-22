@@ -4,8 +4,7 @@ import{ Link } from 'react-router-dom'
 import { config } from './Constants'
 
 
-// const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/login'
-const SERVER_URL = 'http://localhost:3000/login'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/login'
 
 
 //guide has username, we already have name in the db
@@ -37,11 +36,7 @@ class Login extends Component {
     axios.post(SERVER_URL, {user},{ withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
-<<<<<<< HEAD
-        this.props.handleLogin(response.data.user)
-=======
         this.props.handleLogin(response)
->>>>>>> mai-restaurant-model
         this.redirect()
       } else {
         this.setState({
