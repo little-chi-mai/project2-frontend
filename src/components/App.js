@@ -22,7 +22,7 @@ var appStyle = {
 };
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
+const SERVER_URL = 'http://localhost:3000/' + 'logged_in'
 
 
 class App extends Component {

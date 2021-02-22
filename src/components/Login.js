@@ -4,7 +4,7 @@ import{ Link } from 'react-router-dom'
 import { config } from './Constants'
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/login'
+const SERVER_URL = 'http://localhost:3000/login'
 
 
 //guide has username, we already have name in the db
