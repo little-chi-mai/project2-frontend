@@ -15,7 +15,7 @@ class ImageShow extends Component {
       return [
         'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=',
         reference,
-        '&key=AIzaSyDpF67gcwqJT5Lku1Aj-78unvq0OpKUNpA'
+        '&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
       ].join('')
     };
 

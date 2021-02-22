@@ -25,6 +25,21 @@ var appStyle = {
 // const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'logged_in'
 const SERVER_URL = 'http://localhost:3000/' + 'logged_in'
 
+function Logout(props) {
+  const handleClick = (props) => {
+      console.log('clicked');
+      axios.delete('http://localhost:3000/logout', {withCredentials: true})
+      .then(response => {
+        props.handleLogout()
+        props.history.push('/project2-frontend')
+      })
+    .catch(error => console.log(error))
+  }
+  handleClick(props);
+  return(
+    <h1>Lala</h1>
+  )
+}
 
 class App extends Component {
   constructor(props) {
@@ -51,10 +66,17 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   }
 
-  handleLogin = (data) => {
+<<<<<<< HEAD
+  handleLogin = (user) => {
     this.setState({
       isLoggedIn: true,
-      user: data.data.user
+      user: user
+=======
+  handleLogin = (response) => {
+    this.setState({
+      isLoggedIn: true,
+      user: response.data.user
+>>>>>>> mai-restaurant-model
     })
   }
 
@@ -65,27 +87,31 @@ class App extends Component {
     });
   }
 
+
   render() {
     return (
       <div style={ appStyle }>
-        <MyNavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
         <Container style={{backgroundColor: '#F7BA89', minHeight: '100vh', position: 'relative'}}>
           <BrowserRouter>
+          <MyNavBar {...this.props} isLoggedIn={this.state.isLoggedIn}/>
 
+            <MyNavBar {...this.state} isLoggedIn={this.state.isLoggedIn}/>
             <Switch>
-              <Route exact path='/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
-              <Route exact path='/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
-              <Route exact path='/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
 
-              <Route exact path='/event/:id' component = {() => <EventShow {...this.state} />} />
+              <Route exact path='/project2-frontend/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
+              <Route exact path='/project2-frontend/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+              <Route exact path='/project2-frontend/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
+              <Route exact path='/project2-frontend/logout' component={(props) => <Logout {...props} onClick={this.handleClick} handleLogout={this.handleLogout}/> } />
 
-              <Route exact path='/project2-frontend' component = {() => <Welcome {...this.state} />} />
+              <Route exact path='/project2-frontend/event/:id' component = {() => <EventShow {...this.state} />} />
 
-              <Route exact path='/restaurant/:id' component={ShowRestaurant} />
-              <Route exact path='/wishlist' component={() => <Wishlist {...this.state} />} />
-              <Route exact path='/events' component={() => <EventList {...this.state} />} />
-              <Route exact path='/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
+
+
+              <Route exact path='/project2-frontend/restaurant/:id' component={ShowRestaurant} />
+              <Route exact path='/project2-frontend/wishlist' component={() => <Wishlist {...this.state} />} />
+              <Route exact path='/project2-frontend/events' component={() => <EventList {...this.state} />} />
+              <Route exact path='/project2-frontend/restaurant/:id/create-event' component={() => <EventCreate {...this.state} />} />
             </Switch>
           </BrowserRouter>
         </Container>

@@ -34,7 +34,7 @@ class RestaurantSearch extends Component {
       return [
         'https://maps.googleapis.com/maps/api/place/textsearch/json?query=',
         term,
-        '&key=AIzaSyDpF67gcwqJT5Lku1Aj-78unvq0OpKUNpA'
+        '&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
       ].join('');
     }
     axios.get(generateURL(term)).then((response) => {
@@ -53,7 +53,7 @@ class RestaurantSearch extends Component {
       return [
         'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=',
         term,
-        '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,photos,price_level,user_ratings_total,types,place_id,geometry&key=AIzaSyDpF67gcwqJT5Lku1Aj-78unvq0OpKUNpA'
+        '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,photos,price_level,user_ratings_total,types,place_id,geometry&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
       ].join('')
     };
     axios.get(generateURL(term)).then((response) => {

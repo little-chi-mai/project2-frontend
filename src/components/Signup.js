@@ -51,7 +51,7 @@ class Signup extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push('/project2-frontend')
   }
 
   handleErrors = () => {

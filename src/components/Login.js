@@ -37,7 +37,11 @@ class Login extends Component {
     axios.post(SERVER_URL, {user},{ withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
-        this.props.handleLogin(response.data)
+<<<<<<< HEAD
+        this.props.handleLogin(response.data.user)
+=======
+        this.props.handleLogin(response)
+>>>>>>> mai-restaurant-model
         this.redirect()
       } else {
         this.setState({
@@ -49,7 +53,7 @@ class Login extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push('/project2-frontend')
   }
 
   handleErrors = () => {
