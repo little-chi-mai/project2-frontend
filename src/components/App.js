@@ -91,8 +91,8 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/project2-frontend/' component={(props) => <Home {...props} {...this.state} isLoggedIn={this.state.isLoggedIn}/> } />
-              <Route exact path='/project2-frontend/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
-              <Route exact path='/project2-frontend/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
+              <Route exact path='/project2-frontend/gh-pages-url/login' component={(props) => <Login {...props} handleLogin={this.handleLogin}/> } />
+              <Route exact path='/project2-frontend/gh-pages-url/signup' component={(props) => <Signup {...props} handleLogin={this.handleLogin} /> } />
               <Route exact path='/project2-frontend/logout' component={(props) => <Logout {...props} onClick={this.handleClick} handleLogout={this.handleLogout}/> } />
 
               <Route exact path='/project2-frontend/event/:id' component = {(props) => <EventShow {...props} {...this.state} />} />
