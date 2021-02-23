@@ -6,7 +6,7 @@ import {AddToWishList} from './ButtonAddToWishList'
 function ButtonCreateEvent(props) {
 
   return(
-    <a href={'/restaurant/' + props.restaurant.id + '/create-event'}><button>Create Event</button></a>  
+    <a href={'/project2-frontend/restaurant/' + props.restaurant.id + '/create-event'}><button>Create Event</button></a>  
   )
 }
 

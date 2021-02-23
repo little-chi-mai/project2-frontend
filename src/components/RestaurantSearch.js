@@ -4,7 +4,6 @@ import ShowResult from './ShowResult';
 import axios from 'axios';
 
 
-// const SEARCH_RAILS_URL = 'http://localhost:3000/search/'
 
 const searchBoxStyle = {
   display: 'flex',

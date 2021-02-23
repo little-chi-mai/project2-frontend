@@ -4,7 +4,7 @@ import { config } from './Constants'
 
 
 // const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/users'
-const SERVER_URL = 'http://localhost:3000/users'
+const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/users'
 
 //guide calls for username, we already have name in the DB
 class Signup extends Component {

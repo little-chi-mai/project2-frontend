@@ -6,7 +6,7 @@ import { config } from './Constants'
 
 
 const GetRestaurant_URL = (id) => {
-  return 'http://localhost:3000/' + `restaurants/${id}`
+  return 'https://agile-tor-91190.herokuapp.com/' + `restaurants/${id}`
 }
 
 const GetId = () => {

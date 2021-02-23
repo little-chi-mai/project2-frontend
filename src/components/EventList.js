@@ -4,7 +4,7 @@ import { config } from './Constants'
 import Card from 'react-bootstrap/Card'
 
 
-const ALL_EVENTS_URL = 'http://localhost:3000/events.json'
+const ALL_EVENTS_URL = 'https://agile-tor-91190.herokuapp.com/events.json'
 
 const style = {
   margin: '5px',
@@ -39,7 +39,7 @@ class EventList extends Component {
             {event.restaurant && <h6>Venue: <strong>{event.restaurant.name}</strong></h6>}
             {event.introduction && <p>Introduction: {event.introduction}</p>}
             {event.date && <p>Date: {event.date}</p>}
-            <a href={`/event/${event.id}`}><button>Show event</button></a>
+            <a href={`/project2-frontend/event/${event.id}`}><button>Show event</button></a>
           </div>
           </Card>
         )}

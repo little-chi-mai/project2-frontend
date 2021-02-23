@@ -3,7 +3,7 @@ import axios from 'axios'
 import { config } from './Constants'
 
 
-const ALL_RESTAURANTS_URL = 'http://localhost:3000/restaurants.json'
+const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/restaurants.json'
 
 function AddToWishList(restaurant, user_id, callback) {
   console.log("AddToWishList()");

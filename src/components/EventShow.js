@@ -8,7 +8,7 @@ import { config } from './Constants'
 
 
 const GET_EVENT_URL = (id) =>{
-  return 'http://localhost:3000/' + `events/${id}.json`
+  return 'https://agile-tor-91190.herokuapp.com/' + `events/${id}.json`
 }
 
 const EventShow = (props) => {
@@ -85,7 +85,8 @@ class EventShowPage extends Component {
   _handleDelete(){
     let EVENT_URL = GET_EVENT_URL(this.state.id);
     axios.delete(EVENT_URL, {params: {id: this.state.id}}).then((response) => {
-      console.log(response)
+      console.log(response);
+      this.props.history.push('/project2-frontend/events')
     })
   }
 
@@ -93,7 +94,7 @@ class EventShowPage extends Component {
     return(
       <div>
         <h2>Event: {this.state.title}</h2>
-        {this.state.date && <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>}
+        {this.state.date && this.state.creator && <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>}
         {this.state.restaurant && <h3>Venue: {this.state.restaurant.name}</h3>}
         {this.state.attendants && <h4>Attendants:{this.state.attendants.map((object) => {return object.user.name}).join(', ')}</h4>}
         {this.state.introduction && <p>Summary: {this.state.introduction}</p>}
@@ -116,12 +117,12 @@ class EventShowPage extends Component {
     return(
       <div>
         <h2>Edit Event</h2>
-        <h3>Venue:{this.state.restaurant.name}</h3>
+        {this.state.restaurant && <h3>Venue:{this.state.restaurant.name}</h3>}
         <form onSubmit = {this._handleEdit}>
           <label>Title</label>
           <input name='title' defaultValue = {this.state.title} required/>
           <label>Date</label>
-          <input placeholder='2020-12-31' name='date' defaultValue = {this.state.date} required/>
+          <input placeholder='2020-12-31' type='date' name='date' defaultValue = {this.state.date} required/>
           <label>Summary</label>
           <textarea name='introduction' defaultValue = {this.state.introduction}/>
 
