@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import{ Link } from 'react-router-dom'
 import axios from 'axios';
 import { config } from './Constants'
 import Card from 'react-bootstrap/Card'
@@ -39,7 +40,7 @@ class EventList extends Component {
             {event.restaurant && <h6>Venue: <strong>{event.restaurant.name}</strong></h6>}
             {event.introduction && <p>Introduction: {event.introduction}</p>}
             {event.date && <p>Date: {event.date}</p>}
-            <a href={`/project2-frontend/event/${event.id}`}><button>Show event</button></a>
+            <button><Link to={`/project2-frontend/event/${event.id}`}>Show event</Link></button>
           </div>
           </Card>
         )}

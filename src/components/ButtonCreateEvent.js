@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Component} from 'react';
+import{ Link } from 'react-router-dom'
 import {AddToWishList} from './ButtonAddToWishList'
 
 
 function ButtonCreateEvent(props) {
 
   return(
-    <a href={'/project2-frontend/restaurant/' + props.restaurant.id + '/create-event'}><button>Create Event</button></a>  
+    <button><Link to={'/project2-frontend/restaurant/' + props.restaurant.id + '/create-event'}>Create Event</Link></button>
   )
 }
 

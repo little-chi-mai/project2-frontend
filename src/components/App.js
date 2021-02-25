@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {HashRouter, Switch, Route} from 'react-router-dom'
 import MyNavBar from './MyNavBar'
 import Login from './Login'
 import Signup from './Signup'
@@ -60,6 +60,7 @@ class App extends Component {
       if (response.data.logged_in) {
         this.handleLogin(response)
       } else {
+        console.log('loginStatus();');
         this.handleLogout()
       }
     })
@@ -86,7 +87,7 @@ class App extends Component {
       <div style={ appStyle }>
 
         <Container style={{backgroundColor: '#F7BA89', minHeight: '100vh', position: 'relative'}}>
-          <BrowserRouter>
+          <HashRouter>
             <MyNavBar {...this.state} isLoggedIn={this.state.isLoggedIn}/>
             <Switch>
 
@@ -97,14 +98,12 @@ class App extends Component {
 
               <Route exact path='/project2-frontend/event/:id' component = {(props) => <EventShow {...props} {...this.state} />} />
 
-
-
               <Route exact path='/project2-frontend/restaurant/:id' component={ShowRestaurant} />
               <Route exact path='/project2-frontend/wishlist' component={(props) => <Wishlist {...props} {...this.state} />} />
               <Route exact path='/project2-frontend/events' component={(props) => <EventList {...props} {...this.state} />} />
               <Route exact path='/project2-frontend/restaurant/:id/create-event' component={(props) => <EventCreate {...props} {...this.state} />} />
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </Container>
         <Navbar className="align-right" bg="dark" variant="dark">
           <Navbar.Brand>
