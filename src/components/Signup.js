@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { config } from './Constants'
 
-
-// const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/users'
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/users'
+const SERVER_URL = 'http://localhost:3000';
+const USERS_URL = SERVER_URL + '/users'
 
 //guide calls for username, we already have name in the DB
 class Signup extends Component {
@@ -36,7 +35,9 @@ class Signup extends Component {
       password_confirmation: password_confirmation
     }
     //double check your Rails server port, mine is 3000 & React is on 3001
-    axios.post(SERVER_URL, { user }, { withCredentials: true }).then(response => {
+    axios.post(USERS_URL, { user }, { withCredentials: true }).then(response => {
+      console.log(user);
+      console.log(response);
       if (response.data.status === 'created') {
         this.props.handleLogin(response.data)
         this.redirect()
@@ -51,7 +52,7 @@ class Signup extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/project2-frontend')
+    this.props.history.push('/')
   }
 
   handleErrors = () => {

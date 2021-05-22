@@ -5,7 +5,8 @@ import axios from 'axios';
 
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/events'
+const SERVER_URL = 'http://localhost:3000';
+const EVENTS_URL = SERVER_URL + '/events'
 
 const EventCreate = (props) => {
   const {id} = useParams();
@@ -53,15 +54,15 @@ class EventCreateForm extends Component {
       restaurant_id:restaurant_id
     };
     console.log(newEvent)
-    axios.post(SERVER_URL, newEvent).then((response) => {
+    axios.post(EVENTS_URL, newEvent).then((response) => {
       console.log(response);
       this.addAttendants(attendants, newEvent);
-      this.props.history.push(`/project2-frontend/events`)
+      this.props.history.push(`/events`)
     })
   }
 
   addAttendants(attendants, newEvent){
-    axios.get(SERVER_URL + '.json').then((response) => {
+    axios.get(EVENTS_URL + '.json').then((response) => {
       console.log(response.data)
       const found = response.data.find((event) => {
         return event.title === newEvent.title
@@ -70,7 +71,7 @@ class EventCreateForm extends Component {
       attendants.map((user) => {
         let newAttendant = {user_id: user.id, event_id: found.id};
         console.log(newAttendant)
-        axios.post('https://agile-tor-91190.herokuapp.com/attendants', newAttendant).then((response) => {
+        axios.post(SERVER_URL + '/attendants', newAttendant).then((response) => {
           console.log(response)
         })
       })
@@ -84,7 +85,7 @@ class EventCreateForm extends Component {
       return
     }
     const keyword = event.target.value
-    axios.get('https://agile-tor-91190.herokuapp.com/users').then((response) => {
+    axios.get(SERVER_URL + '/users').then((response) => {
       const users = response.data.users;
       const matches = users.filter(user => {
         const regex = new RegExp(keyword, 'gi');

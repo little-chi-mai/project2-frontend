@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { config } from './Constants'
+// import config from '../config';
 
 const style = {
   display: 'flex',
@@ -12,11 +14,12 @@ const style = {
   margin: '5px'
 }
 
+const SERVER_URL = config.SERVER_URL;
 
-const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/' + 'restaurants.json'
+const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
 
 const GetRestaurantURL = (id) => {
-  return 'https://agile-tor-91190.herokuapp.com/' + `restaurants/${id}.json`
+  return SERVER_URL + `restaurants/${id}.json`
 }
 
 class ShowRestaurantList extends Component {
@@ -29,9 +32,12 @@ class ShowRestaurantList extends Component {
   }
 
   updateList() {
+    console.log('updateList');
     axios.get(ALL_RESTAURANTS_URL).then((response) => {
+      console.log(response.data);
+      console.log(this.props.user.id);
       const restaurants = response.data.filter((restaurant) =>
-        restaurant.user && restaurant.user.id === this.props.user.id
+        restaurant.user_id === this.props.user.id
       );
       this.setState({restaurantList: restaurants});
     })

@@ -6,9 +6,10 @@ import TestingChats from './TestingChats';
 import CreateNewChat from './CreateNewChat';
 import { config } from './Constants'
 
+const SERVER_URL = 'http://localhost:3000';
 
 const GET_EVENT_URL = (id) =>{
-  return 'https://agile-tor-91190.herokuapp.com/' + `events/${id}.json`
+  return SERVER_URL + `/events/${id}.json`
 }
 
 const EventShow = (props) => {
@@ -86,7 +87,7 @@ class EventShowPage extends Component {
     let EVENT_URL = GET_EVENT_URL(this.state.id);
     axios.delete(EVENT_URL, {params: {id: this.state.id}}).then((response) => {
       console.log(response);
-      this.props.history.push('/project2-frontend/events')
+      this.props.history.push('/events')
     })
   }
 

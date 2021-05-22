@@ -10,7 +10,7 @@ function ButtonAddAndCreate(props) {
     <button onClick={() => {
       AddToWishList(props.restaurant, props.user.id, (restaurant_id) => {
         console.log(restaurant_id);
-        props.history.push(`/project2-frontend/restaurant/${restaurant_id}/create-event`)
+        props.history.push(`/restaurant/${restaurant_id}/create-event`)
       });
 
     }} >

@@ -3,7 +3,7 @@ import SearchForm from './SearchForm';
 import ShowResult from './ShowResult';
 import axios from 'axios';
 
-
+const SERVER_URL = 'http://localhost:3000';
 
 const searchBoxStyle = {
   display: 'flex',
@@ -22,50 +22,52 @@ class RestaurantSearch extends Component {
     }
     this.fetchRestaurants = this.fetchRestaurants.bind(this)
     this.fetchRandomNum = this.fetchRandomNum.bind(this)
-    this.fetchRandomRestaurant = this.fetchRandomRestaurant.bind(this)
+    // this.fetchRandomRestaurant = this.fetchRandomRestaurant.bind(this)
     this._handleSubmit = this._handleSubmit.bind(this)
+  }
+  generateURL (term) {
+    return [
+      SERVER_URL,
+      '/search/',
+      term
+    ].join('');
   }
 
 
   fetchRestaurants(term) {
     console.log("ABOUT TO FETCH")
-    const generateURL = function(term) {
-      return [
-        'https://maps.googleapis.com/maps/api/place/textsearch/json?query=',
-        term,
-        '&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
-      ].join('');
-    }
-    axios.get(generateURL(term)).then((response) => {
+    
+    axios.get(this.generateURL(term)).then((response) => {
+      console.log(response.data);
       this.setState({
-        restaurants: response.data.results,
+        restaurants: response.data,
         searchButtonClicked: true,
         isIncluded: true,
         random: false,
       })
-      this.fetchRandomNum();
+      // this.fetchRandomNum();
     })
   }
 
-  fetchRandomRestaurant(term) {
-    const generateURL = function(term) {
-      return [
-        'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=',
-        term,
-        '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,photos,price_level,user_ratings_total,types,place_id,geometry&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
-      ].join('')
-    };
-    axios.get(generateURL(term)).then((response) => {
-      this.setState({
-        restaurants: response.data.candidates,
-        searchButtonClicked: true,
-        isIncluded: true,
-        random: true
-      })
-      this.fetchRandomNum();
-    });
+  // fetchRandomRestaurant(term) {
+  //   // const generateURL = function(term) {
+  //   //   return [
+  //   //     'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=',
+  //   //     term,
+  //   //     '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,photos,price_level,user_ratings_total,types,place_id,geometry&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
+  //   //   ].join('')
+  //   // };
+  //   axios.get(this.generateURL(term)).then((response) => {
+  //     this.setState({
+  //       restaurants: response.data.candidates,
+  //       searchButtonClicked: true,
+  //       isIncluded: true,
+  //       random: true
+  //     })
+  //     this.fetchRandomNum();
+  //   });
 
-  }
+  // }
 
   fetchRandomNum() {
     console.log('fetchRandomNum()')
@@ -77,7 +79,7 @@ class RestaurantSearch extends Component {
     const adventurousTerms = ['cake', 'steak', 'cookies', 'ice cream', 'thai food', 'good pizza', 'vietnamese', 'korean', 'bbq'];
     const randomTerm = adventurousTerms[Math.floor(Math.random() * adventurousTerms.length)];
     console.log(randomTerm);
-    this.fetchRandomRestaurant(randomTerm);
+    this.fetchRestaurants(randomTerm);
   }
 
   render() {

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+const SERVER_URL = 'http://localhost:3000';
+
 class ImageShow extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +13,12 @@ class ImageShow extends Component {
   }
 
   fetchImage(reference) {
+    console.log('reference', reference);
     const generateURL = function(reference) {
       return [
-        'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=',
-        reference,
-        '&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
+        SERVER_URL,
+        '/fetchimage/',
+        reference
       ].join('')
     };
 
@@ -23,7 +26,8 @@ class ImageShow extends Component {
       // this.setState({
       //   image: response
       // })
-      this.setState({image: response.config.url})
+      console.log("response from FetchImage", response);
+      this.setState({image: response.data})
     });
   }
 

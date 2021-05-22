@@ -3,8 +3,8 @@ import axios from 'axios'
 import{ Link } from 'react-router-dom'
 import { config } from './Constants'
 
-
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/login'
+const SERVER_URL = 'http://localhost:3000';
+const LOGIN_URL = SERVER_URL + '/login'
 
 
 //guide has username, we already have name in the db
@@ -33,7 +33,7 @@ class Login extends Component {
       password: password
     }
 
-    axios.post(SERVER_URL, {user},{ withCredentials: true })
+    axios.post(LOGIN_URL, {user}, { withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response)
@@ -48,7 +48,7 @@ class Login extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/project2-frontend')
+    this.props.history.push('/')
   }
 
   handleErrors = () => {

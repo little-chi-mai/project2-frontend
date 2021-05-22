@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import { config } from './Constants'
 
-
-const ALL_RESTAURANTS_URL = 'https://agile-tor-91190.herokuapp.com/restaurants.json'
+const SERVER_URL = 'http://localhost:3000'
+const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
 
 function AddToWishList(restaurant, user_id, callback) {
   console.log("AddToWishList()");
   console.log(restaurant);
   const newRestaurant = {
     name: restaurant.name,
-    longitude: restaurant.geometry.location.lng,
-    latitude: restaurant.geometry.location.lat,
+    longitude: restaurant.lng,
+    latitude: restaurant.lat,
     address: restaurant.formatted_address,
     // image: restaurant.image,
     price_level: restaurant.price_level,

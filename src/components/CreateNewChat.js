@@ -3,7 +3,9 @@ import axios from 'axios';
 import { config } from './Constants'
 
 
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/chats'
+
+const SERVER_URL = 'http://localhost:3000';
+const CHAT_URL = SERVER_URL + '/chats';
 
 class CreateNewChat extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ class CreateNewChat extends Component {
     this.setState(
       {content: ''}
     );
-    axios.post(SERVER_URL, {user_id: this.props.user.id, event_id: this.props.event_id, content: this.state.content}).then((response) => {
+    axios.post(CHAT_URL, {user_id: this.props.user.id, event_id: this.props.event_id, content: this.state.content}).then((response) => {
       console.log(response);
     }, (error) => {console.log('CreateChat error', error);});
 

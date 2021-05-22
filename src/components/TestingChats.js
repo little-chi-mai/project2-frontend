@@ -3,8 +3,8 @@ import axios from 'axios'
 import ChatsDisplay from './ChatsDisplay'
 import { config } from './Constants'
 
-
-const SERVER_URL = 'https://agile-tor-91190.herokuapp.com/' + 'chats.json'
+const SERVER_URL = 'http://localhost:3000';
+const CHATS_URL = SERVER_URL + '/chats.json'
 
 class TestingChats extends Component {
   constructor(props){
@@ -17,7 +17,7 @@ class TestingChats extends Component {
   }
 
   fetchChats() {
-    axios.get(SERVER_URL).then((response) => {
+    axios.get(CHATS_URL).then((response) => {
       const chat = response.data.filter(chat =>
         chat.event && chat.event.id === this.state.id
       );

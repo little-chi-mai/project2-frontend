@@ -7,7 +7,7 @@ import {AddToWishList} from './ButtonAddToWishList'
 function ButtonCreateEvent(props) {
 
   return(
-    <button><Link to={'/project2-frontend/restaurant/' + props.restaurant.id + '/create-event'}>Create Event</Link></button>
+    <button><Link to={'/restaurant/' + props.restaurant.id + '/create-event'}>Create Event</Link></button>
   )
 }
 

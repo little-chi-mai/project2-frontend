@@ -4,17 +4,18 @@ import axios from 'axios';
 import ButtonCreateEvent from './ButtonCreateEvent';
 import { config } from './Constants'
 
+const SERVER_URL = 'http://localhost:3000';
 
 const GetRestaurant_URL = (id) => {
-  return 'https://agile-tor-91190.herokuapp.com/' + `restaurants/${id}`
+  return SERVER_URL + `restaurants/${id}`
 }
 
-const GetId = () => {
-  let {id} = useParams();
-  return(
-    <ShowRestaurant id={parseInt(id)}/>
-  )
-}
+// const GetId = () => {
+//   let {id} = useParams();
+//   return(
+//     <ShowRestaurant id={parseInt(id)}/>
+//   )
+// }
 
 class ShowRestaurant extends Component {
   constructor(props) {
