@@ -67,6 +67,7 @@ class ShowRestaurantList extends Component {
                       {restaurant.contact && <p>Contact: {restaurant.contact}</p>}
                       {restaurant.rating && <p>Rating: {restaurant.rating}/5</p>}
                       {restaurant.price_level && <p>Price level: {restaurant.price_level}/5</p>}
+                      <img src={restaurant.img} alt=""/>
                     </div>
 
                 </Card.Body>

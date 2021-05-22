@@ -85,16 +85,18 @@ class ShowResult extends Component {
 
     return(
       <div>
-        {this.props.restaurant &&
+        {Object.keys(this.props.restaurant).length !== 0 &&
+
           <Card>
             <Card.Body>
 
-              <h3>{this.props.restaurant.name}</h3>
+              
               {this.props.restaurant.name &&
               <div>
+                <h3>{this.props.restaurant.name}</h3>
                 {
                   this.state.isSaved
-                  ? <button>SAVED!</button>
+                  ? <button disabled>SAVED!</button>
                   : <button onClick={() => this.addToWishList(this.props.restaurant, this.props.user.id, () => {this.setState({isSaved: true})})}>Add to your Wishlist</button>
                 }
                 <ButtonAddAndCreate {...this.props} {...this.state}/>
@@ -108,8 +110,8 @@ class ShowResult extends Component {
                 <p>Total user rating: {this.props.restaurant.user_ratings_total}</p>
               }
 
-              </Card.Body>
-                {this.props.restaurant && this.props.restaurant.photos && <ImageShow photoreference={this.props.restaurant.place_id} />}
+            </Card.Body>
+            {this.props.restaurant && this.props.restaurant.photos && <ImageShow photoreference={this.props.restaurant.place_id} />}
 {/*   
                 <iframe 
                   width="600" height="450" loading="lazy"
@@ -117,8 +119,7 @@ class ShowResult extends Component {
                   ${this.props.restaurant.lng}&key=AIzaSyBvx27HoWvmHT_CPgA1oN6q5ISJtsB5YmM;output=embed`}
                 >
                 </iframe> */}
-              </Card>
-              
+          </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&
           <h3>...No such thing on Earth, dude!</h3>

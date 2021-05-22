@@ -21,12 +21,9 @@ class ImageShow extends Component {
         reference
       ].join('')
     };
-
+    console.log("AXIOS GET", generateURL(reference));
     axios.get(generateURL(reference)).then((response) => {
-      // this.setState({
-      //   image: response
-      // })
-      console.log("response from FetchImage", response);
+
       this.setState({image: response.data})
     });
   }
@@ -35,16 +32,12 @@ class ImageShow extends Component {
     this.fetchImage(this.props.photoreference)
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.photoreference !== prevProps.photoreference) {
-      this.fetchImage(this.props.photoreference);
-    }
-  }
-
   render() {
+
     return(
       <div>
         <img src={this.state.image} alt=""/>
+        
       </div>
     )
   }
