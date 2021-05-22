@@ -11,7 +11,7 @@ const EVENTS_URL = SERVER_URL + '/events'
 const EventCreate = (props) => {
   const {id} = useParams();
   return(
-    <EventCreateForm restaurant_id = {parseInt(id)} user = {props.user} {...props}/>
+    <EventCreateForm restaurant_id={parseInt(id)} user={props.user} {...props} key={id}/>
   )
 }
 
@@ -26,12 +26,13 @@ class EventCreateForm extends Component {
       user_id: this.props.user.id,
       restaurant_id: this.props.restaurant_id,
       attendants:[],
-      attendants_search:[],
+      attendants_search:[]
     }
     this._handleChange = this._handleChange.bind(this)
     this._handleSubmit = this._handleSubmit.bind(this)
     this._findAttendants = this._findAttendants.bind(this)
     this._handleCheckbox = this._handleCheckbox.bind(this)
+    this._handleClickCheckBox = this._handleClickCheckBox.bind(this)
     console.log(this.props.user.id)
   }
 
@@ -71,9 +72,11 @@ class EventCreateForm extends Component {
       attendants.map((user) => {
         let newAttendant = {user_id: user.id, event_id: found.id};
         console.log(newAttendant)
-        axios.post(SERVER_URL + '/attendants', newAttendant).then((response) => {
-          console.log(response)
-        })
+        axios.post(SERVER_URL + '/attendants.json', newAttendant)
+          .then((response) => {
+            console.log(response)
+          })
+          .catch(error => console.log("ERROR", error));
       })
     })
   }
@@ -87,12 +90,14 @@ class EventCreateForm extends Component {
     const keyword = event.target.value
     axios.get(SERVER_URL + '/users').then((response) => {
       const users = response.data.users;
-      const matches = users.filter(user => {
+      let matches = users.filter(user => {
         const regex = new RegExp(keyword, 'gi');
         return user.name.match(regex)
       });
+      console.log("matches", matches);
+      
       this.setState({
-        attendants_search:matches
+        attendants_search: matches
       })
     })
   }
@@ -119,6 +124,16 @@ class EventCreateForm extends Component {
     }
   }
 
+  _handleClickCheckBox() {
+    console.log('CLICKED');
+    // this.setState({ attendants: ... });
+    let matchesWithoutAttendants = this.state.attendants_search.filter(user => this.state.attendants.includes(user.id));
+    console.log("matchesWithoutAttendants", matchesWithoutAttendants);
+    this.setState({
+      attendants_search: matchesWithoutAttendants
+    })
+  }
+
   render(){
     return(
       <div>
@@ -141,13 +156,19 @@ class EventCreateForm extends Component {
 
           <div>
             <label>Attendants</label>
-            <input name='attendants' onChange = {this._findAttendants}/>
+            <input name='attendants' onChange={this._findAttendants}/>
+            <select name="cars" id="cars">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
             <ul>
               {this.state.attendants.map((attendant) => (
-                <label><input type='checkbox' key = {attendant.id} id = {attendant.id} onChange={this._handleCheckbox} checked />{attendant.name}</label>
+                <label><input type='checkbox' key={attendant.id} id={attendant.id} onChange={this._handleCheckbox} checked />{attendant.name}</label>
               ))}
                 {this.state.attendants_search.map((user) => (
-                <label><input type='checkbox' key = {user.id} id = {user.id} onChange={this._handleCheckbox}/>{user.name}</label>
+                <label><input type='checkbox' key={user.id} id={user.id} onChange={this._handleCheckbox} onClick={this._handleClickCheckBox}/>{user.name}</label>
               ))}
             </ul>
           </div>

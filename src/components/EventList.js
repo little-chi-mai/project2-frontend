@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
-import{ Link } from 'react-router-dom'
 import axios from 'axios';
-import { config } from './Constants'
-import Card from 'react-bootstrap/Card'
+
+import EventCards from './EventCards';
+
 
 const SERVER_URL = 'http://localhost:3000'
 const ALL_EVENTS_URL = SERVER_URL + '/events.json'
 
-const style = {
-  margin: '5px',
-  padding: '10px'
-}
 
 class EventList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventList: []
+      eventList: [],
+      attendingEvents: []
     }
   }
   componentDidMount() {
@@ -26,6 +23,17 @@ class EventList extends Component {
       );
       this.setState({eventList: events})
     })
+    axios.get(SERVER_URL + '/attendants.json').then((response) => {
+      const eventInfos = response.data.filter((info) =>
+        info.user && info.user.id === this.props.user.id
+      );
+      eventInfos.map(eventInfo => {
+        console.log(SERVER_URL + `/events/${eventInfo.event.id}.json`);
+        axios.get(SERVER_URL + `/events/${eventInfo.event.id}.json`).then((response) => {
+          this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
+        })
+    })
+    })
   }
 
 
@@ -33,17 +41,10 @@ class EventList extends Component {
     return(
       <div>
         <h1>Your Events</h1>
-        {this.state.eventList && this.state.eventList.map(event =>
-          <Card key={event.id} style={style}>
-          <div>
-            {event.title && <h4>{event.title}</h4>}
-            {event.restaurant && <h6>Venue: <strong>{event.restaurant.name}</strong></h6>}
-            {event.introduction && <p>Introduction: {event.introduction}</p>}
-            {event.date && <p>Date: {event.date}</p>}
-            <button><Link to={`/event/${event.id}`}>Show event</Link></button>
-          </div>
-          </Card>
-        )}
+        <h3>--- Current events you are hosting ---</h3>
+          <EventCards {...this.props} eventList={this.state.eventList}/>
+        <h3>--- Current events you are attending ---</h3>
+          <EventCards {...this.props} eventList={this.state.attendingEvents}/>
       </div>
     )
   }

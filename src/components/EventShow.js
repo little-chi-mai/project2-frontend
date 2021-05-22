@@ -37,24 +37,27 @@ class EventShowPage extends Component {
     this._handleDelete =this._handleDelete.bind(this);
     this.renderRecord =this.renderRecord.bind(this);
     this.renderForm =this.renderForm.bind(this);
+    
+  }
 
+  componentDidMount() {
+
+    this.fetchEvent()
+  } 
+
+  fetchEvent() {
     let EVENT_URL = GET_EVENT_URL(this.props.event_id)
-
-    const fetchEvent = () => {
-      axios.get(EVENT_URL).then((response) => {
-        const event = response.data
-        this.setState({
-          title:event.title,
-          introduction: event.introduction,
-          date: event.date,
-          creator: event.user,
-          restaurant: event.restaurant,
-          attendants: event.attendants
-        })
+    axios.get(EVENT_URL).then((response) => {
+      const event = response.data
+      this.setState({
+        title:event.title,
+        introduction: event.introduction,
+        date: event.date,
+        creator: event.user,
+        restaurant: event.restaurant,
+        attendants: event.attendants
       })
-    }
-
-    fetchEvent()
+    })
   }
 
   _handleToggle = (event) => {
