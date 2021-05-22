@@ -25,12 +25,7 @@ class EventShowPage extends Component {
     this.state = {
       edit:false,
       id: this.props.event_id,
-      title:'',
-      introduction:'',
-      date:'',
-      creator:{},
-      restaurant: {},
-      attendants: []
+      event: {}
     }
     this._handleToggle =this._handleToggle.bind(this);
     this._handleEdit =this._handleEdit.bind(this);
@@ -48,14 +43,10 @@ class EventShowPage extends Component {
   fetchEvent() {
     let EVENT_URL = GET_EVENT_URL(this.props.event_id)
     axios.get(EVENT_URL).then((response) => {
-      const event = response.data
+      const event = response.data.event;
+      console.log("event", event);
       this.setState({
-        title:event.title,
-        introduction: event.introduction,
-        date: event.date,
-        creator: event.user,
-        restaurant: event.restaurant,
-        attendants: event.attendants
+        event: event
       })
     })
   }
@@ -92,22 +83,30 @@ class EventShowPage extends Component {
       console.log(response);
       this.props.history.push('/events')
     })
+    
   }
+  
 
   renderRecord(){
-    return(
-      <div>
-        <h2>Event: {this.state.title}</h2>
-        {this.state.date && this.state.creator && <h3>Date: {this.state.date} || Creator: {this.state.creator.name}</h3>}
-        {this.state.restaurant && <h3>Venue: {this.state.restaurant.name}</h3>}
-        {this.state.attendants && <h4>Attendants:{this.state.attendants.map((object) => {return object.user.name}).join(', ')}</h4>}
-        {this.state.introduction && <p>Summary: {this.state.introduction}</p>}
-        <button onClick = {this._handleToggle}> Edit this event</button>
-        <button onClick = {this._handleDelete}> Delete this event</button>
-        <TestingChats event_id={this.state.id}/>
-        <CreateNewChat {...this.props} event_id={this.state.id}/>
-      </div>
-    )
+    const {title, user, restaurant, date, attendants, introduction} = this.state.event;
+    console.log("this.state.event", this.state.event);
+    if (this.state.event) {
+      return(
+        <div>
+          <h5>{title}</h5>
+          {user && <h3> Creator: {user.name} </h3> }
+          <h3>Date: {date}</h3>
+          {restaurant && <h3>Venue: {restaurant.name}</h3>}
+          {attendants && <h4>Attendants:{attendants.map((object) => {return object.user.name}).join(', ')}</h4>}
+          {introduction && <p>Summary: {introduction}</p>}
+          <button onClick = {this._handleToggle}> Edit this event</button>
+          <button onClick = {this._handleDelete}> Delete this event</button>
+          <TestingChats event_id={this.state.id}/>
+          <CreateNewChat {...this.props} event_id={this.state.id}/>
+        </div>
+      )
+    }
+    
   }
 
   findAttendants(keyword, users){
@@ -138,6 +137,7 @@ class EventShowPage extends Component {
   }
 
   render(){
+    console.log("RENDER");
     if(this.state.edit) {
       return this.renderForm()
     } else {

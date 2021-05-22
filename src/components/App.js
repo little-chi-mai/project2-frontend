@@ -65,7 +65,7 @@ class App extends Component {
         console.log("logged in?", response);
         if (response.data.logged_in && this.state.isLoggedIn === false) {
           console.log('HANDLELOGIN;');
-          this.handleLogin(response)
+          this.handleLogin(response.data.user)
         } else if (!response.data.logged_in && this.state.isLoggedIn === true) {
           console.log('handleLogout()');
           this.handleLogout();
@@ -74,11 +74,11 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   }
 
-  handleLogin = (response) => {
+  handleLogin = (user) => {
     console.log("Origin handleLogin()");
     this.setState({
       isLoggedIn: true,
-      user: response.data.user
+      user: user
     })
   }
 

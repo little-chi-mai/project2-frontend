@@ -28,61 +28,11 @@ function AddToWishList(restaurant, user_id, callback) {
 }
 
 class ButtonAddToWishList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSaved: false,
-    }
-
-    this.getAllRestaurants = this.getAllRestaurants.bind(this)
-    this.isRestaurantSaved = this.isRestaurantSaved.bind(this)
-
-  }
-
-  getAllRestaurants(callback) {
-    axios.get(ALL_RESTAURANTS_URL).then((response) => {
-      const restaurants = response.data.filter((restaurant) =>
-        restaurant.user && restaurant.user.id === this.props.user.id
-      );
-      callback(restaurants);
-    })
-  }
-
-  isRestaurantSaved() {
-    this.getAllRestaurants((restaurants) => {
-      if (restaurants !== []) {
-        const restaurantFound = restaurants.find(restaurant => restaurant.place_id === this.props.restaurant.place_id)
-        if (restaurantFound) {
-          this.setState({isSaved: true});
-        } else {
-          this.setState({isSaved: false});
-        }
-      }
-    });
-  }
-
-  componentDidMount() {
-    // console.log('My component was rendered to the screen')
-    this.isRestaurantSaved();
-  }
-
-  componentDidUpdate(prevProps) {
-    // console.log('My component was just updated')
-    // this.isRestaurantSaved();
-    if (this.props.restaurant !== prevProps.restaurant) {
-      // console.log('SETSTATE');
-      this.isRestaurantSaved();
-    }
-  }
 
   renderContent() {
     return (
       <div>
-      {
-        this.state.isSaved
-        ? <button>SAVED!</button>
-        : <button onClick={() => AddToWishList(this.props.restaurant, this.props.user.id, () => {this.setState({isSaved: true})})}>Add to your Wishlist</button>
-      }
+      
       </div>
     )
   }

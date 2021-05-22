@@ -36,7 +36,7 @@ class Login extends Component {
     axios.post(LOGIN_URL, {user}, { withCredentials: true })
     .then(response => {
       if (response.data.logged_in) {
-        this.props.handleLogin(response)
+        this.props.handleLogin(response.data.user)
         this.redirect()
       } else {
         this.setState({

@@ -24,9 +24,10 @@ class EventCreateForm extends Component {
       date:'',
       introduction:'',
       user_id: this.props.user.id,
-      restaurant_id: this.props.restaurant_id,
       attendants:[],
-      attendants_search:[]
+      attendants_search:[],
+      restaurant_id: this.props.restaurant_id,
+      restaurant: {}
     }
     this._handleChange = this._handleChange.bind(this)
     this._handleSubmit = this._handleSubmit.bind(this)
@@ -34,6 +35,16 @@ class EventCreateForm extends Component {
     this._handleCheckbox = this._handleCheckbox.bind(this)
     this._handleClickCheckBox = this._handleClickCheckBox.bind(this)
     console.log(this.props.user.id)
+  }
+
+  componentDidMount() {
+    this.getRestaurantInfo(this.state.restaurant_id);
+  }
+
+  getRestaurantInfo = (id) => {
+    axios.get(SERVER_URL + `/restaurants/${id}.json`).then((response) => {
+      this.setState({restaurant: response.data.restaurants})
+    })
   }
 
   _handleChange = (event) => {
@@ -138,6 +149,8 @@ class EventCreateForm extends Component {
     return(
       <div>
         <h2>Create Event</h2>
+        <h3>Venue: {this.state.restaurant.name}</h3>
+        <p>{this.state.restaurant.address}</p>
         <form onSubmit = {this._handleSubmit}>
           <p>
             <label>Title</label>

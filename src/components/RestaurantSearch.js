@@ -18,7 +18,8 @@ class RestaurantSearch extends Component {
       restaurants: [],
       randomNum: 0,
       searchButtonClicked: false,
-      random : true
+      random : true,
+      restaurant: {}
     }
     this.fetchRestaurants = this.fetchRestaurants.bind(this)
     this.fetchRandomNum = this.fetchRandomNum.bind(this)
@@ -44,30 +45,10 @@ class RestaurantSearch extends Component {
         searchButtonClicked: true,
         isIncluded: true,
         random: false,
+        restaurant: response.data[this.state.randomNum]
       })
-      // this.fetchRandomNum();
     })
   }
-
-  // fetchRandomRestaurant(term) {
-  //   // const generateURL = function(term) {
-  //   //   return [
-  //   //     'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=',
-  //   //     term,
-  //   //     '&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,photos,price_level,user_ratings_total,types,place_id,geometry&key=AIzaSyBTRHwGzxqChaQTIV0yYJS4e8z91KGB0Fk'
-  //   //   ].join('')
-  //   // };
-  //   axios.get(this.generateURL(term)).then((response) => {
-  //     this.setState({
-  //       restaurants: response.data.candidates,
-  //       searchButtonClicked: true,
-  //       isIncluded: true,
-  //       random: true
-  //     })
-  //     this.fetchRandomNum();
-  //   });
-
-  // }
 
   fetchRandomNum() {
     console.log('fetchRandomNum()')
@@ -96,7 +77,7 @@ class RestaurantSearch extends Component {
             Adventurous!
           </button>
         </div>
-        <ShowResult {...this.props} {...this.state} restaurant={this.state.restaurants[this.state.randomNum]}/>
+        <ShowResult {...this.props} {...this.state} restaurant={this.state.restaurant}/>
       </div>
     )
   }

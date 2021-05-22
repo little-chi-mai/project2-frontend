@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 import EventCards from './EventCards';
+import { mockComponent } from 'react-dom/test-utils';
 
 
 const SERVER_URL = 'http://localhost:3000'
@@ -13,7 +14,8 @@ class EventList extends Component {
     super(props);
     this.state = {
       eventList: [],
-      attendingEvents: []
+      attendingEvents: [],
+      expiredEvents: []
     }
   }
   componentDidMount() {
@@ -24,15 +26,21 @@ class EventList extends Component {
       this.setState({eventList: events})
     })
     axios.get(SERVER_URL + '/attendants.json').then((response) => {
+      console.log("GET ATTENDINGEVENT", response);
       const eventInfos = response.data.filter((info) =>
         info.user && info.user.id === this.props.user.id
       );
-      eventInfos.map(eventInfo => {
-        console.log(SERVER_URL + `/events/${eventInfo.event.id}.json`);
-        axios.get(SERVER_URL + `/events/${eventInfo.event.id}.json`).then((response) => {
-          this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
+      if (eventInfos.length !== 0) {
+        eventInfos.map(eventInfo => {
+          console.log("EVENT INFO", eventInfo);
+          if (eventInfo.event) {
+            axios.get(SERVER_URL + `/events/${eventInfo.event.id}.json`).then((response) => {
+              // if (moment().isAfter(response.data.event.date))
+              this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
+            })
+          }
         })
-    })
+      }
     })
   }
 

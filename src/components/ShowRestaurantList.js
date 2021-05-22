@@ -18,8 +18,8 @@ const SERVER_URL = config.SERVER_URL;
 
 const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
 
-const GetRestaurantURL = (id) => {
-  return SERVER_URL + `restaurants/${id}.json`
+const getRestaurantURL = (id) => {
+  return SERVER_URL + `/restaurants/${id}.json`
 }
 
 class ShowRestaurantList extends Component {
@@ -29,6 +29,7 @@ class ShowRestaurantList extends Component {
       restaurantList: []
     }
     this.updateList = this.updateList.bind(this)
+    console.log(config.SERVER_URL);
   }
 
   updateList() {
@@ -82,8 +83,9 @@ class ShowRestaurantList extends Component {
 function ButtonRemove(props) {
 
   function _handleDelete(callback) {
-    const RESTAURANT_ID = GetRestaurantURL(props.restaurant.id)
-    axios.delete(RESTAURANT_ID, {id: props.restaurant.id}).then((response) => {
+    const RESTAURANT_URL = getRestaurantURL(props.restaurant.id)
+    console.log("RESTAURANT_URL", RESTAURANT_URL);
+    axios.delete(RESTAURANT_URL, {id: props.restaurant.id}).then((response) => {
       callback(response)
     })
   }

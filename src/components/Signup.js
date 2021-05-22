@@ -39,7 +39,7 @@ class Signup extends Component {
       console.log(user);
       console.log(response);
       if (response.data.status === 'created') {
-        this.props.handleLogin(response.data)
+        this.props.handleLogin(response.data.user)
         this.redirect()
       } else {
         console.log(response.data.errors);
@@ -51,7 +51,8 @@ class Signup extends Component {
     .catch(error => console.log('api errors:', error))
   };
 
-  redirect = () => {
+  redirect() {
+    console.log("REDIRECT AFTER SIGNUP");
     this.props.history.push('/')
   }
 
