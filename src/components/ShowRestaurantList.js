@@ -5,8 +5,7 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { config } from './Constants'
-// import config from '../config';
+import config from '../config';
 
 const style = {
   display: 'flex',
