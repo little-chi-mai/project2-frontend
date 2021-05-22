@@ -11,6 +11,7 @@
     "dotenv": "^10.0.0",
     "google-maps-react": "^2.0.6",
     "moment": "^2.29.1",
+    "node-sass": "^6.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",
@@ -27,7 +28,8 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile:sass": "node-sass src/sass/main.scss src/main.css -w"
   },
   "eslintConfig": {
     "extends": [
@@ -49,5 +51,6 @@
   },
   "devDependencies": {
     "gh-pages": "^3.1.0"
-  }
+  },
+  "homepage": "https://little-chi-mai.github.io/project2-frontend/"
 }
