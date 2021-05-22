@@ -22,7 +22,9 @@ function EventCards(props) {
         {event.attendants && event.attendants.length !== 0 && <h4>Attendants</h4>}
         {event.attendants && event.attendants.map(attendant => <p key={attendant.user.id}>{attendant.user.name} ({attendant.user.email})</p>)}
         <h4>Created by {event.user.name}</h4>
-        <Link to={`/event/${event.id}`}><button>Show event</button></Link>
+        {props.expired !== true && 
+          <Link to={`/event/${event.id}`}><button>Show event</button></Link>
+        }
       </Card>
     )}
     </>

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import moment from 'moment';
+
 
 import EventCards from './EventCards';
 import { mockComponent } from 'react-dom/test-utils';
@@ -35,8 +37,12 @@ class EventList extends Component {
           console.log("EVENT INFO", eventInfo);
           if (eventInfo.event) {
             axios.get(SERVER_URL + `/events/${eventInfo.event.id}.json`).then((response) => {
-              // if (moment().isAfter(response.data.event.date))
-              this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
+              if (moment().isBefore(response.data.event.date) && response.data.event.user.id !== this.props.user.id) {
+                this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
+              } else {
+                this.setState({expiredEvents: [...this.state.expiredEvents, response.data.event]})
+              }
+              
             })
           }
         })
@@ -49,10 +55,14 @@ class EventList extends Component {
     return(
       <div>
         <h1>Your Events</h1>
-        <h3>--- Current events you are hosting ---</h3>
-          <EventCards {...this.props} eventList={this.state.eventList}/>
-        <h3>--- Current events you are attending ---</h3>
-          <EventCards {...this.props} eventList={this.state.attendingEvents}/>
+        {this.state.eventList.length !== 0 && <h3>--- Current events you are hosting ---</h3>}
+        <EventCards {...this.props} eventList={this.state.eventList}/>
+        
+        {this.state.attendingEvents.length !== 0 && <h3>--- Current events you are attending ---</h3>}
+        <EventCards {...this.props} eventList={this.state.attendingEvents}/>
+
+        {this.state.expiredEvents.length !== 0 && <h3>--- Historic events ---</h3>}
+        <EventCards {...this.props} eventList={this.state.expiredEvents} expired={true} />
       </div>
     )
   }
