@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import axios from 'axios';
 import ButtonCreateEvent from './ButtonCreateEvent';
-import { config } from './Constants'
+import config from '../config'
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = config.SERVER_URL;
 
 const GetRestaurant_URL = (id) => {
   return SERVER_URL + `restaurants/${id}`

@@ -4,11 +4,10 @@ import moment from 'moment';
 
 
 import EventCards from './EventCards';
-import { mockComponent } from 'react-dom/test-utils';
+import config from '../config'
 
-
-const SERVER_URL = 'http://localhost:3000'
-const ALL_EVENTS_URL = SERVER_URL + '/events.json'
+const SERVER_URL = config.SERVER_URL;
+const ALL_EVENTS_URL = SERVER_URL + '/events.json';
 
 
 class EventList extends Component {

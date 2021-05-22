@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import SearchForm from './SearchForm';
 import ShowResult from './ShowResult';
 import axios from 'axios';
+import config from '../config'
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = config.SERVER_URL;
 
 const searchBoxStyle = {
   display: 'flex',

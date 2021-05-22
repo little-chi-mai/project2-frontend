@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {useParams, Link} from "react-router-dom";
-import { withRouter } from "react-router";
 import axios from 'axios';
+
 import TestingChats from './TestingChats';
 import CreateNewChat from './CreateNewChat';
-import { config } from './Constants'
+import config from '../config'
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = config.SERVER_URL;
 
 const GET_EVENT_URL = (id) =>{
   return SERVER_URL + `/events/${id}.json`

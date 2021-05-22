@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {useParams} from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from 'axios';
+import config from '../config'
 
-
-
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = config.SERVER_URL;
 const EVENTS_URL = SERVER_URL + '/events'
 
 const EventCreate = (props) => {

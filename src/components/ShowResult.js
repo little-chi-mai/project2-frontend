@@ -4,8 +4,9 @@ import ButtonAddAndCreate from './ButtonAddAndCreate'
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import ImageShow from './ImageShow'
+import config from '../config'
 
-const SERVER_URL = 'http://localhost:3000'
+const SERVER_URL = config.SERVER_URL
 const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
 
 class ShowResult extends Component {

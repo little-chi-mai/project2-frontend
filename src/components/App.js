@@ -24,9 +24,7 @@ var appStyle = {
 
 
 // const SERVER_URL = 'https://agile-tor-91190.herokuapp.com' 
-const SERVER_URL = 'http://localhost:3000' 
-
-
+const SERVER_URL = config.SERVER_URL 
 
 function Logout(props) {
   const handleClick = (props) => {
@@ -54,7 +52,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // window.SERVER_URL = 'http://localhost:3000'; 
     this.loginStatus();
   }
 

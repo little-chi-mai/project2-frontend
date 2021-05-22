@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { config } from './Constants'
+import config from '../config'
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = config.SERVER_URL;
 const USERS_URL = SERVER_URL + '/users'
 
 //guide calls for username, we already have name in the DB
