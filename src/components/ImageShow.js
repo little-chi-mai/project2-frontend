@@ -33,6 +33,12 @@ class ImageShow extends Component {
     this.fetchImage(this.props.photoreference)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.photoreference !== prevProps.photoreference) {
+      this.fetchImage(this.props.photoreference);
+    }
+  }
+
   render() {
 
     return(
