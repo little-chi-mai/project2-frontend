@@ -7,6 +7,10 @@ const style = {
   padding: '10px'
 }
 
+const wishlistPhoto = {
+  maxHeight: '200px'
+  
+}
 
 function EventCards(props) {
   const [events, setEvents] = useState(props);
@@ -17,6 +21,7 @@ function EventCards(props) {
       <Card key={event.id} style={style}>
         {event.title && <h4>{event.title}</h4>}
         {event.restaurant && <h6>Venue: <strong>{event.restaurant.name}</strong></h6>}
+        {event.restaurant && <img style={wishlistPhoto} src={event.restaurant.image} alt={event.restaurant.name}></img>}
         {event.introduction && <p>Introduction: {event.introduction}</p>}
         {event.date && <p>Date: {event.date}</p>}
 
