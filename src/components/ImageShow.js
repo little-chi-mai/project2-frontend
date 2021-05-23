@@ -26,6 +26,7 @@ class ImageShow extends Component {
     axios.get(generateURL(reference)).then((response) => {
 
       this.setState({image: response.data})
+      this.props._handleUpdate(this.state.image);
     });
   }
 

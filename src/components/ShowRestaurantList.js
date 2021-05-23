@@ -13,6 +13,11 @@ const style = {
   margin: '5px'
 }
 
+const wishlistPhoto = {
+  maxWidth: '100%',
+  maxHeight: '200px'
+}
+
 const SERVER_URL = config.SERVER_URL;
 
 const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
@@ -59,6 +64,7 @@ class ShowRestaurantList extends Component {
                 <Card.Body>
                     <div>
                       <h3>{restaurant.name}</h3>
+                      {restaurant.image && <img style={wishlistPhoto} src={restaurant.image} alt={restaurant.name}></img>}
                       <ButtonCreateEvent restaurant={restaurant} style={{margin: '5px'}}/>
                       <ButtonRemove updateList={this.updateList} restaurant={restaurant}/>
                       <p>Address: {restaurant.address}</p>
@@ -66,7 +72,6 @@ class ShowRestaurantList extends Component {
                       {restaurant.contact && <p>Contact: {restaurant.contact}</p>}
                       {restaurant.rating && <p>Rating: {restaurant.rating}/5</p>}
                       {restaurant.price_level && <p>Price level: {restaurant.price_level}/5</p>}
-                      <img src={restaurant.img} alt=""/>
                     </div>
 
                 </Card.Body>

@@ -68,7 +68,7 @@ class EventCreateForm extends Component {
     axios.post(EVENTS_URL, newEvent).then((response) => {
       console.log(response);
       this.addAttendants(attendants, newEvent);
-      this.props.history.push(`/events`)
+      
     })
   }
 
@@ -84,7 +84,7 @@ class EventCreateForm extends Component {
         console.log(newAttendant)
         axios.post(SERVER_URL + '/attendants.json', newAttendant)
           .then((response) => {
-            console.log(response)
+            this.props.history.push(`/events`);
           })
           .catch(error => console.log("ERROR", error));
       })

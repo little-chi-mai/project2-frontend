@@ -14,11 +14,13 @@ class ShowResult extends Component {
     super(props);
     this.state = {
       restaurant: props.restaurant,
-      isSaved: false
+      isSaved: false,
+      image_url: ''
     }
     
     this.getAllRestaurants = this.getAllRestaurants.bind(this)
     this.isRestaurantSaved = this.isRestaurantSaved.bind(this)
+    this._handleUpdate = this._handleUpdate.bind(this)
   }
 
 
@@ -53,20 +55,17 @@ class ShowResult extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.restaurant !== prevProps.restaurant) {
       this.isRestaurantSaved();
+      this.setState({restaurant: this.props.restaurant})
     }
   }
 
-  // _handleClick() {
-  //   console.log("CLICKED");
-  // }
-
-  addToWishList(restaurant, user_id, callback) {
+  addToWishList(restaurant, user_id, image_url, callback) {
     const newRestaurant = {
       name: restaurant.name,
       longitude: restaurant.lng,
       latitude: restaurant.lat,
       address: restaurant.formatted_address,
-      // image: restaurant.image,
+      image: image_url,
       price_level: restaurant.price_level,
       rating: restaurant.rating,
       website: restaurant.website,
@@ -79,6 +78,12 @@ class ShowResult extends Component {
       callback(response.data.id);
       this.isRestaurantSaved();
     })
+  }
+
+  _handleUpdate(image_url) {
+    console.log('UPDATED');
+    console.log('image_url', image_url);
+    this.setState({image_url: image_url})
   }
 
 
@@ -98,7 +103,7 @@ class ShowResult extends Component {
                 {
                   this.state.isSaved
                   ? <button disabled>SAVED!</button>
-                  : <button onClick={() => this.addToWishList(this.props.restaurant, this.props.user.id, () => {this.setState({isSaved: true})})}>Add to your Wishlist</button>
+                  : <button onClick={() => this.addToWishList(this.props.restaurant, this.props.user.id, this.state.image_url, () => {this.setState({isSaved: true})})}>Add to your Wishlist</button>
                 }
                 <ButtonAddAndCreate {...this.props} {...this.state}/>
               </div>}
@@ -112,7 +117,7 @@ class ShowResult extends Component {
               }
 
             </Card.Body>
-            {this.props.restaurant && this.props.restaurant.photos && <ImageShow photoreference={this.props.restaurant.place_id} />}
+            {this.props.restaurant && this.props.restaurant.photos && <ImageShow photoreference={this.props.restaurant.place_id} _handleUpdate={this._handleUpdate}/>}
 {/*   
                 <iframe 
                   width="600" height="450" loading="lazy"

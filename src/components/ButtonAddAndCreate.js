@@ -13,7 +13,7 @@ function ButtonAddAndCreate(props) {
   if (!props.isSaved) {
     return(
       <button onClick={() => {
-        AddToWishList(props.restaurant, props.user.id, (restaurant_id) => {
+        AddToWishList(props.restaurant, props.user.id, props.image_url, (restaurant_id) => {
           console.log(restaurant_id);
           props.history.push(`/restaurant/${restaurant_id}/create-event`)
         });

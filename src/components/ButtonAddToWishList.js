@@ -5,7 +5,7 @@ import config from '../config'
 const SERVER_URL = config.SERVER_URL
 const ALL_RESTAURANTS_URL = SERVER_URL + '/restaurants.json'
 
-function AddToWishList(restaurant, user_id, callback) {
+function AddToWishList(restaurant, user_id, image_url, callback) {
   console.log("AddToWishList()");
   console.log(restaurant);
   const newRestaurant = {
@@ -13,7 +13,7 @@ function AddToWishList(restaurant, user_id, callback) {
     longitude: restaurant.lng,
     latitude: restaurant.lat,
     address: restaurant.formatted_address,
-    // image: restaurant.image,
+    image: image_url,
     price_level: restaurant.price_level,
     rating: restaurant.rating,
     website: restaurant.website,

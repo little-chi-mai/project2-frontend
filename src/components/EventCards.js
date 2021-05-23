@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component, useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import{ Link } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ const style = {
 
 
 function EventCards(props) {
+  const [events, setEvents] = useState(props);
   // const {title, restaurant, introduction, date, attendants} = props.event;
   return(
     <>
