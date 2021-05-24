@@ -22,7 +22,7 @@ class EventList extends Component {
   componentDidMount() {
     axios.get(ALL_EVENTS_URL).then((response) => {
       const events = response.data.filter((event) =>
-        event.user && event.user.id === this.props.user.id
+        event.user && event.user.id === this.props.user.id && moment().isBefore(event.date)
       );
       this.setState({eventList: events})
     })
@@ -36,9 +36,11 @@ class EventList extends Component {
           console.log("EVENT INFO", eventInfo);
           if (eventInfo.event) {
             axios.get(SERVER_URL + `/events/${eventInfo.event.id}.json`).then((response) => {
+              console.log(moment().isBefore(response.data.event.date));
+              console.log(response.data.event.user.id !== this.props.user.id);
               if (moment().isBefore(response.data.event.date) && response.data.event.user.id !== this.props.user.id) {
                 this.setState({attendingEvents: [...this.state.attendingEvents, response.data.event]})
-              } else {
+              } else if (!moment().isBefore(response.data.event.date)) {
                 this.setState({expiredEvents: [...this.state.expiredEvents, response.data.event]})
               }
               

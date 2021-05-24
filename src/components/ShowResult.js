@@ -118,13 +118,7 @@ class ShowResult extends Component {
 
             </Card.Body>
             {this.props.restaurant && this.props.restaurant.photos && <ImageShow photoreference={this.props.restaurant.place_id} _handleUpdate={this._handleUpdate}/>}
-{/*   
-                <iframe 
-                  width="600" height="450" loading="lazy"
-                  src={`https://maps.google.com/maps?q=${this.props.restaurant.lat},
-                  ${this.props.restaurant.lng}&key=AIzaSyBvx27HoWvmHT_CPgA1oN6q5ISJtsB5YmM;output=embed`}
-                >
-                </iframe> */}
+
           </Card>
         }
         {!this.props.restaurant && this.props.searchButtonClicked &&

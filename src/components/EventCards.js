@@ -8,8 +8,9 @@ const style = {
 }
 
 const wishlistPhoto = {
-  maxHeight: '200px'
-  
+  height: '250px',
+  objectFit: 'cover',
+  // objectPosition: '0 50%',
 }
 
 function EventCards(props) {
@@ -28,9 +29,9 @@ function EventCards(props) {
         {event.attendants && event.attendants.length !== 0 && <h4>Attendants</h4>}
         {event.attendants && event.attendants.map(attendant => <p key={attendant.user.id}>{attendant.user.name} ({attendant.user.email})</p>)}
         <h4>Created by {event.user.name}</h4>
-        {props.expired !== true && 
+        {/* {props.expired !== true &&  */}
           <Link to={`/event/${event.id}`}><button>Show event</button></Link>
-        }
+        {/* } */}
       </Card>
     )}
     </>

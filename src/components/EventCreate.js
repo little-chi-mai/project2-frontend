@@ -169,12 +169,6 @@ class EventCreateForm extends Component {
           <div>
             <label>Attendants</label>
             <input name='attendants' onChange={this._findAttendants}/>
-            <select name="cars" id="cars">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
             <ul>
               {this.state.attendants.map((attendant) => (
                 <label><input type='checkbox' key={attendant.id} id={attendant.id} onChange={this._handleCheckbox} checked />{attendant.name}</label>
